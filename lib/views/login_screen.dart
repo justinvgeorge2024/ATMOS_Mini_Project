@@ -25,14 +25,12 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
-  printUsername() {
-    print(_usernameEditingController.text);
-  }
+  printUsername() {}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 79, 232, 255),
+      backgroundColor: const Color.fromARGB(255, 79, 232, 255),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
@@ -67,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   controller: _usernameEditingController,
                   decoration: InputDecoration(
                       hintText: "Name",
-                      iconColor: Color.fromARGB(255, 255, 255, 255),
+                      iconColor: const Color.fromARGB(255, 255, 255, 255),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
                           borderSide: Divider.createBorderSide(context,
@@ -92,8 +90,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => HomeScreen()));
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => const HomeScreen()));
                   }, //printUsername,
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blueGrey),
@@ -110,9 +108,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () {
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                  builder: (context) => RegistrationScreen()));
+                                  builder: (context) =>
+                                      const RegistrationScreen()));
                         },
-                        child: Text("Register Now!")),
+                        child: const Text("Register Now!")),
                   ],
                 )
               ],

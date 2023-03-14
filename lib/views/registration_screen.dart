@@ -1,15 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:seenit/views/login_screen.dart';
 
-class RegistrationScreen extends StatelessWidget {
+class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});
+
+  @override
+  State<RegistrationScreen> createState() => _RegistrationScreenState();
+}
+
+class _RegistrationScreenState extends State<RegistrationScreen> {
+  final _usernameEditingController = TextEditingController(text: "name");
+  final _passwordEditingController = TextEditingController(text: "password");
+  final _rePasswordEditingController =
+      TextEditingController(text: "re-enter password");
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _usernameEditingController.dispose();
+    _passwordEditingController.dispose();
+    _rePasswordEditingController.dispose();
+    super.dispose();
+  }
+
+  printUsername() {}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 79, 232, 255),
+      backgroundColor: const Color.fromARGB(255, 79, 232, 255),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
@@ -21,7 +44,7 @@ class RegistrationScreen extends StatelessWidget {
                 Image.asset(
                   "assets/images/logo.jpg",
                 ),
-                Text("SignUp Screen"),
+                const Text("SignUp Screen"),
                 const SizedBox(height: 40),
                 // Container(
                 //   decoration: BoxDecoration(
@@ -42,10 +65,10 @@ class RegistrationScreen extends StatelessWidget {
                 //   ),
                 // ),
                 TextFormField(
-                  // controller: _usernameEditingController,
+                  controller: _usernameEditingController,
                   decoration: InputDecoration(
                       hintText: "Name",
-                      iconColor: Color.fromARGB(255, 255, 255, 255),
+                      iconColor: const Color.fromARGB(255, 255, 255, 255),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
                           borderSide: Divider.createBorderSide(context,
@@ -56,20 +79,21 @@ class RegistrationScreen extends StatelessWidget {
                   height: 20,
                 ),
                 TextFormField(
-                  // controller: _passwordEditingController,
+                  controller: _passwordEditingController,
                   decoration: InputDecoration(
-                      hintText: "Password",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50),
-                          borderSide: Divider.createBorderSide(context,
-                              color: Colors.white, width: 500))),
+                    hintText: "Password",
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50),
+                        borderSide: Divider.createBorderSide(context,
+                            color: Colors.white, width: 500)),
+                  ),
                   // decoration: const InputDecoration(hintText: "Username"),
                 ),
                 const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
-                  // controller: _passwordEditingController,
+                  controller: _rePasswordEditingController,
                   decoration: InputDecoration(
                       hintText: "Re Enter Password",
                       border: OutlineInputBorder(
@@ -87,13 +111,13 @@ class RegistrationScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    TextButton(
+                    ElevatedButton(
                         onPressed: () {
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                  builder: (context) => LoginScreen()));
+                                  builder: (context) => const LoginScreen()));
                         },
-                        child: Text("Register")),
+                        child: const Text("Register")),
                   ],
                 )
               ],
