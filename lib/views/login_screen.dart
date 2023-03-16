@@ -12,6 +12,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _usernameEditingController = TextEditingController(text: "name");
   final _passwordEditingController = TextEditingController(text: "password");
+  var _color = Color.fromARGB(255, 79, 232, 255);
 
   @override
   void initState() {
@@ -30,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 79, 232, 255),
+      backgroundColor: _color,
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
@@ -90,6 +91,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 ElevatedButton(
                   onPressed: () {
+                    // setState(() {    // setState used to change the states in widgets.
+                    //   _color = Colors.white; // here it is used to reflect the change in background color
+                    // });
+                    // print(_color);
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
                         builder: (context) => const HomeScreen()));
                   }, //printUsername,
