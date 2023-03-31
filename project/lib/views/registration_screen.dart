@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:seenit/views/login_screen.dart';
+import 'package:atmos/views/login_screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});

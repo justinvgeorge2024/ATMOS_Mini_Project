@@ -2,7 +2,7 @@ import 'dart:ffi';
 
 import 'package:either_dart/either.dart';
 import 'package:flutter/material.dart';
-import 'package:seenit/services/rest_services.dart';
+import 'package:atmos/services/rest_services.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
