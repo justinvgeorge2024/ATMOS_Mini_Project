@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:seenit/views/home_screen.dart';
-import 'package:seenit/views/login_screen.dart';
+import 'package:atmos/views/home_screen.dart';
+import 'package:atmos/views/login_screen.dart';
 
 void main() {
   runApp(const MyApp());
