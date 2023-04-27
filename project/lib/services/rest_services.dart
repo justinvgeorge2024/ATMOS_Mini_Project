@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:either_dart/either.dart';
 import 'package:flutter/material.dart';
-import 'package:seenit/models/service_failures.dart';
+import 'package:atmos/models/service_failures.dart';
 
 class RestServices {
   static var _dio = Dio();

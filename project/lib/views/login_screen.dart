@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:seenit/views/home_screen.dart';
-import 'package:seenit/views/registration_screen.dart';
+import 'package:atmos/views/home_screen.dart';
+import 'package:atmos/views/registration_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -12,7 +12,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _usernameEditingController = TextEditingController(text: "name");
   final _passwordEditingController = TextEditingController(text: "password");
-  var _color = Color.fromARGB(255, 79, 232, 255);
+  var _color = Color.fromARGB(218, 0, 0, 0);
 
   @override
   void initState() {
@@ -41,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image.asset(
-                  "assets/images/logo.jpg",
+                  "assets/images/logo.png",
                 ),
                 const SizedBox(height: 40),
                 // Container(
@@ -64,13 +64,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 // ),
                 TextFormField(
                   controller: _usernameEditingController,
+                  style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
                       hintText: "Name",
-                      iconColor: const Color.fromARGB(255, 255, 255, 255),
+                      iconColor: Color.fromARGB(255, 0, 81, 255),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
                           borderSide: Divider.createBorderSide(context,
-                              color: Colors.white))),
+                              color: Colors.amber))),
                   // decoration: const InputDecoration(hintText: "Username"),
                 ),
                 const SizedBox(
@@ -78,12 +79,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 TextFormField(
                   controller: _passwordEditingController,
+                  style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
                       hintText: "Password",
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
                           borderSide: Divider.createBorderSide(context,
-                              color: Colors.white, width: 500))),
+                              color: Color.fromARGB(255, 167, 21, 21),
+                              width: 500))),
                   // decoration: const InputDecoration(hintText: "Username"),
                 ),
                 const SizedBox(
@@ -108,7 +111,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text("Don't have an Account"),
+                    const Text(
+                      "Don't have an Account?",
+                      style: TextStyle(color: Colors.amber),
+                    ),
                     TextButton(
                         onPressed: () {
                           Navigator.of(context).pushReplacement(
