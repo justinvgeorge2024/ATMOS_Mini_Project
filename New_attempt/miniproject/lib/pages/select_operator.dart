@@ -38,7 +38,7 @@ class SelectOp extends StatelessWidget {
                           builder: (context) => const StudentLogin()));
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.redAccent,
+                      backgroundColor: Colors.blueGrey[700],
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                     ),
@@ -53,7 +53,7 @@ class SelectOp extends StatelessWidget {
                             builder: (context) => const TeacherLogin()));
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.redAccent,
+                        backgroundColor: Colors.blueGrey[700],
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
                       ),

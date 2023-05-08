@@ -11,7 +11,7 @@ class StudentsHome extends StatelessWidget {
       child: Scaffold(
           appBar: AppBar(
             elevation: 0.0,
-            backgroundColor: Colors.redAccent,
+            backgroundColor: Colors.blueGrey[700],
             title: const Text(
               "STUDENT HOME",
               style: TextStyle(
@@ -38,11 +38,11 @@ class StudentsHome extends StatelessWidget {
                         builder: (context) => const QrScan()));
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.redAccent,
+                    backgroundColor: Colors.blueGrey[700],
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                   ),
-                  child: const Text("Scan QR"),
+                  child: const Text("Generate QR"),
                 ),
               ],
             ),

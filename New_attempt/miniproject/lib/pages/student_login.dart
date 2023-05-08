@@ -12,7 +12,7 @@ class StudentLogin extends StatelessWidget {
       child: Scaffold(
           appBar: AppBar(
             elevation: 0.0,
-            backgroundColor: Colors.redAccent,
+            backgroundColor: Colors.blueGrey[700],
             title: const Text(
               "STUDENT LOGIN",
               style: TextStyle(
@@ -65,7 +65,7 @@ class StudentLogin extends StatelessWidget {
                             builder: (context) => const StudentsHome()));
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.redAccent,
+                        backgroundColor: Colors.blueGrey[700],
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
                       ),
@@ -81,7 +81,7 @@ class StudentLogin extends StatelessWidget {
                                   builder: (context) => const StudentsRegs()));
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.redAccent,
+                          backgroundColor: Colors.blueGrey[700],
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
                         ),

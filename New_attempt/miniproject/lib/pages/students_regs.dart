@@ -10,7 +10,7 @@ class StudentsRegs extends StatelessWidget {
       child: Scaffold(
           appBar: AppBar(
             elevation: 0.0,
-            backgroundColor: Colors.redAccent,
+            backgroundColor: Colors.blueGrey[700],
             title: const Text(
               "STUDENT REGISTRATION",
               style: TextStyle(
@@ -67,7 +67,7 @@ class StudentsRegs extends StatelessWidget {
                                         const StudentLogin()));
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.redAccent,
+                            backgroundColor: Colors.blueGrey[700],
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20)),
                           ),

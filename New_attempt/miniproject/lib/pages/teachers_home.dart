@@ -11,7 +11,7 @@ class TeachersHome extends StatelessWidget {
       child: Scaffold(
           appBar: AppBar(
             elevation: 0.0,
-            backgroundColor: Colors.redAccent,
+            backgroundColor: Colors.blueGrey[700],
             title: const Text(
               "TEACHER HOME",
               style: TextStyle(
@@ -38,7 +38,7 @@ class TeachersHome extends StatelessWidget {
                         builder: (context) => const QrGenerator()));
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.redAccent,
+                    backgroundColor: Colors.blueGrey[700],
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                   ),
