@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:miniproject/pages/register_page.dart';
+import 'package:miniproject/pages/select_operator.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,18 +11,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+          appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+      )),
+      home: const SelectOp(),
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-          backgroundColor: Colors.grey[200],
-          appBar: AppBar(
-            elevation: 0.0,
-            backgroundColor: Colors.pink,
-            title: const Text(
-              "Smart Attendance",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-          ),
-          body: Registration()),
+      title: 'ATMOS',
     );
   }
 }
