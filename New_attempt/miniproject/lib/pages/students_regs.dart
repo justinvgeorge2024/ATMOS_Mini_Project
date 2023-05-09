@@ -55,6 +55,17 @@ class StudentsRegs extends StatelessWidget {
                       ),
                     ),
                   ),
+                  const Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Re-Enter Passworrd',
+                        isDense: true, // Added this
+                        contentPadding: EdgeInsets.all(8), // Added this
+                      ),
+                    ),
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Padding(
