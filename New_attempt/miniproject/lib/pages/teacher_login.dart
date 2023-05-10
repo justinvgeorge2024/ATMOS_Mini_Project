@@ -3,8 +3,37 @@ import 'package:miniproject/pages/select_operator.dart';
 import 'package:miniproject/pages/teachers_home.dart';
 import 'package:miniproject/pages/teachers_regs.dart';
 
-class TeacherLogin extends StatelessWidget {
+import '../services/auth_services.dart';
+
+class TeacherLogin extends StatefulWidget {
   const TeacherLogin({super.key});
+
+  @override
+  State<TeacherLogin> createState() => _TeacherLoginState();
+}
+
+class _TeacherLoginState extends State<TeacherLogin> {
+  final _usernameController = TextEditingController();
+
+  final _passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  _loginUser() {
+    String email = _usernameController.text.trim();
+    String password = _passwordController.text.trim();
+    Future<String> res = AuthServices.login(email: email, password: password);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,25 +64,31 @@ class TeacherLogin extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: TextField(
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: TextFormField(
+                      controller: _usernameController,
+                      style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'E-Mail',
-                        isDense: true, // Added this
-                        contentPadding: EdgeInsets.all(8), // Added this
+                        hintStyle: const TextStyle(color: Colors.grey),
+                        hintText: "E-Mail",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
                       ),
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: TextField(
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: TextFormField(
+                      controller: _usernameController,
+                      style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Passworrd',
-                        isDense: true, // Added this
-                        contentPadding: EdgeInsets.all(8), // Added this
+                        hintStyle: const TextStyle(color: Colors.grey),
+                        hintText: "Password",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
                       ),
                     ),
                   ),

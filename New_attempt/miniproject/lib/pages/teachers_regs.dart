@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:miniproject/pages/teacher_login.dart';
 
-class TeachersRegs extends StatelessWidget {
+class TeachersRegs extends StatefulWidget {
   const TeachersRegs({super.key});
 
+  @override
+  State<TeachersRegs> createState() => _TeachersRegsState();
+}
+
+class _TeachersRegsState extends State<TeachersRegs> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(

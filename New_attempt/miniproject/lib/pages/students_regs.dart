@@ -1,8 +1,56 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:miniproject/pages/student_login.dart';
 
-class StudentsRegs extends StatelessWidget {
+import '../services/auth_services.dart';
+
+class StudentsRegs extends StatefulWidget {
   const StudentsRegs({super.key});
+
+  @override
+  State<StudentsRegs> createState() => _StudentsRegsState();
+}
+
+class _StudentsRegsState extends State<StudentsRegs> {
+  final _usernameController = TextEditingController();
+
+  final _passwordController = TextEditingController();
+  bool isloading = false;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  Future _registerUser() async {
+    try {
+      setState(() {
+        isloading = true;
+      });
+      String email = _usernameController.text.trim();
+      String password = _passwordController.text.trim();
+      Future<String> res = AuthServices.singup(email: email, password: password);
+      setState(() {
+        isloading = false;
+      });
+
+      if (res != "success") {
+        print(res);
+        return;
+      }
+      Get.to(const StudentLogin());
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,56 +81,54 @@ class StudentsRegs extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: TextField(
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: TextFormField(
+                      controller: _usernameController,
+                      style: const TextStyle(color: Colors.black87),
                       decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'E-Mail',
-                        isDense: true, // Added this
-                        contentPadding: EdgeInsets.all(8), // Added this
+                        hintStyle: const TextStyle(color: Colors.grey),
+                        hintText: "E-Mail",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
                       ),
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: TextField(
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: TextFormField(
+                      controller: _passwordController,
+                      style: const TextStyle(color: Colors.black87),
                       decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Passworrd',
-                        isDense: true, // Added this
-                        contentPadding: EdgeInsets.all(8), // Added this
-                      ),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Re-Enter Passworrd',
-                        isDense: true, // Added this
-                        contentPadding: EdgeInsets.all(8), // Added this
+                        hintStyle: const TextStyle(color: Colors.grey),
+                        hintText: "Password",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
                       ),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(20.0),
-                    child: Padding(
-                      padding: const EdgeInsets.all(0.0),
-                      child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const StudentLogin()));
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blueGrey[700],
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20)),
-                          ),
-                          child: const Text("Register")),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        _registerUser();
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            builder: (context) => const StudentLogin()));
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blueGrey[700],
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                      ),
+                      child: isloading
+                          ? const Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : const Center(
+                              child: Text("Register"),
+                            ),
                     ),
                   ),
                 ],

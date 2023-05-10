@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:miniproject/pages/qr_gen.dart';
 import 'package:miniproject/pages/teacher_login.dart';
 
-class TeachersHome extends StatelessWidget {
+class TeachersHome extends StatefulWidget {
   const TeachersHome({super.key});
 
+  @override
+  State<TeachersHome> createState() => _TeachersHomeState();
+}
+
+class _TeachersHomeState extends State<TeachersHome> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(

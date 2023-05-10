@@ -1,10 +1,59 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:miniproject/main.dart';
 import 'package:miniproject/pages/select_operator.dart';
 import 'package:miniproject/pages/students_home.dart';
 import 'package:miniproject/pages/students_regs.dart';
+import 'package:miniproject/services/auth_services.dart';
+import 'package:get/get.dart';
 
-class StudentLogin extends StatelessWidget {
+class StudentLogin extends StatefulWidget {
   const StudentLogin({super.key});
+
+  @override
+  State<StudentLogin> createState() => _StudentLoginState();
+}
+
+class _StudentLoginState extends State<StudentLogin> {
+  final _usernameController = TextEditingController();
+
+  final _passwordController = TextEditingController();
+  bool isloading = false;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  Future _loginUser() async {
+    try {
+      setState(() {
+        isloading = true;
+      });
+
+      String email = _usernameController.text.trim();
+      String password = _passwordController.text.trim();
+      Future<String> res = AuthServices.login(email: email, password: password);
+      setState(() {
+        isloading = false;
+      });
+
+      if (res != "success") {
+        print(res);
+        return;
+      }
+      Get.to(const StudentsHome());
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,25 +84,31 @@ class StudentLogin extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: TextField(
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: TextFormField(
+                      controller: _usernameController,
+                      style: const TextStyle(color: Colors.black87),
                       decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'E-Mail',
-                        isDense: true, // Added this
-                        contentPadding: EdgeInsets.all(8), // Added this
+                        hintStyle: const TextStyle(color: Colors.grey),
+                        hintText: "E-Mail",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
                       ),
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: TextField(
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: TextFormField(
+                      controller: _passwordController,
+                      style: const TextStyle(color: Colors.black87),
                       decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Passworrd',
-                        isDense: true, // Added this
-                        contentPadding: EdgeInsets.all(8), // Added this
+                        hintStyle: const TextStyle(color: Colors.grey),
+                        hintText: "Password",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
                       ),
                     ),
                   ),
@@ -61,31 +116,56 @@ class StudentLogin extends StatelessWidget {
                     padding: const EdgeInsets.all(20.0),
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => const StudentsHome()));
+                        _loginUser();
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => StreamBuilder<User?>(
+                              stream: FirebaseAuth.instance.authStateChanges(),
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData) {
+                                  return const StudentsHome();
+                                } else {
+                                  return const StudentLogin();
+                                }
+                              },
+                            ),
+                          ),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blueGrey[700],
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
                       ),
-                      child: const Text("Login"),
+                      child: isloading
+                          ? const Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : const Center(
+                              child: Text("Login"),
+                            ),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(0.0),
+                    padding: const EdgeInsets.all(20.0),
                     child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) => const StudentsRegs()));
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blueGrey[700],
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                        ),
-                        child: const Text("Register")),
+                      onPressed: () {
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            builder: (context) => const StudentsRegs()));
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blueGrey[700],
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                      ),
+                      child: isloading
+                          ? const Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : const Center(
+                              child: Text("Register"),
+                            ),
+                    ),
                   ),
                 ],
               ),

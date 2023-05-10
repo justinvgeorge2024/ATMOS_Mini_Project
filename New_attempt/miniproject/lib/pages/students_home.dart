@@ -1,10 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:miniproject/pages/qr_scan.dart';
 import 'package:miniproject/pages/student_login.dart';
 
-class StudentsHome extends StatelessWidget {
+class StudentsHome extends StatefulWidget {
   const StudentsHome({super.key});
 
+  @override
+  State<StudentsHome> createState() => _StudentsHomeState();
+}
+
+class _StudentsHomeState extends State<StudentsHome> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -44,6 +50,19 @@ class StudentsHome extends StatelessWidget {
                   ),
                   child: const Text("Generate QR"),
                 ),
+                ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    backgroundColor: Colors.blueGrey[700],
+                  ),
+                  icon: const Icon(Icons.arrow_back_ios_new),
+                  label: const Text(
+                    'sign out',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  onPressed: () => FirebaseAuth.instance.signOut(),
+                )
               ],
             ),
           )),
