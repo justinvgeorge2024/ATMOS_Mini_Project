@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:miniproject/pages/student_login.dart';
+import 'package:miniproject/pages/students_home.dart';
 
 import '../services/auth_services.dart';
 
@@ -37,7 +38,8 @@ class _StudentsRegsState extends State<StudentsRegs> {
       });
       String email = _usernameController.text.trim();
       String password = _passwordController.text.trim();
-      Future<String> res = AuthServices.singup(email: email, password: password);
+      Future<String> res =
+          AuthServices.singup(email: email, password: password);
       setState(() {
         isloading = false;
       });
@@ -115,7 +117,7 @@ class _StudentsRegsState extends State<StudentsRegs> {
                       onPressed: () {
                         _registerUser();
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => const StudentLogin()));
+                            builder: (context) => const StudentsHome()));
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blueGrey[700],
