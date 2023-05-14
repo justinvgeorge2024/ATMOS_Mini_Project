@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:miniproject/pages/select_operator.dart';
-import 'package:miniproject/pages/teachers_home.dart';
 import 'package:miniproject/pages/teachers_regs.dart';
-
-import '../services/auth_services.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:miniproject/pages/students_home.dart';
+import 'package:miniproject/services/auth_services.dart';
 
 class TeacherLogin extends StatefulWidget {
   const TeacherLogin({super.key});
@@ -16,6 +17,7 @@ class _TeacherLoginState extends State<TeacherLogin> {
   final _usernameController = TextEditingController();
 
   final _passwordController = TextEditingController();
+  bool isloading = false;
 
   @override
   void initState() {
@@ -29,10 +31,27 @@ class _TeacherLoginState extends State<TeacherLogin> {
     super.dispose();
   }
 
-  _loginUser() {
-    String email = _usernameController.text.trim();
-    String password = _passwordController.text.trim();
-    Future<String> res = AuthServices.login(email: email, password: password);
+  Future _loginUser() async {
+    try {
+      setState(() {
+        isloading = true;
+      });
+
+      String email = _usernameController.text.trim();
+      String password = _passwordController.text.trim();
+      Future<String> res = AuthServices.login(email: email, password: password);
+      setState(() {
+        isloading = false;
+      });
+
+      if (res != "success") {
+        print(res);
+        return;
+      }
+      Get.to(const StudentsHome());
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
   }
 
   @override
@@ -96,15 +115,34 @@ class _TeacherLoginState extends State<TeacherLogin> {
                     padding: const EdgeInsets.all(20.0),
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => const TeachersHome()));
+                        _loginUser();
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => StreamBuilder<User?>(
+                              stream: FirebaseAuth.instance.authStateChanges(),
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData) {
+                                  return const StudentsHome();
+                                } else {
+                                  return const TeacherLogin();
+                                }
+                              },
+                            ),
+                          ),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blueGrey[700],
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
                       ),
-                      child: const Text("Login"),
+                      child: isloading
+                          ? const Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : const Center(
+                              child: Text("Login"),
+                            ),
                     ),
                   ),
                   Padding(
