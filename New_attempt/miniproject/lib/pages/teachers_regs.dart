@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:miniproject/pages/teacher_login.dart';
+import 'package:miniproject/pages/teachers_home.dart';
 
 class TeachersRegs extends StatefulWidget {
   const TeachersRegs({super.key});
@@ -54,18 +55,7 @@ class _TeachersRegsState extends State<TeachersRegs> {
                     child: TextField(
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'Passworrd',
-                        isDense: true, // Added this
-                        contentPadding: EdgeInsets.all(8), // Added this
-                      ),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Re-Enter Passworrd',
+                        labelText: 'Password',
                         isDense: true, // Added this
                         contentPadding: EdgeInsets.all(8), // Added this
                       ),
@@ -77,7 +67,7 @@ class _TeachersRegsState extends State<TeachersRegs> {
                         onPressed: () {
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                  builder: (context) => const TeacherLogin()));
+                                  builder: (context) => const TeachersHome()));
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blueGrey[700],

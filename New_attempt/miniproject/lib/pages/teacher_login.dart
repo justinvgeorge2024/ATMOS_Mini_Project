@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:miniproject/pages/select_operator.dart';
+import 'package:miniproject/pages/teachers_home.dart';
 import 'package:miniproject/pages/teachers_regs.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:miniproject/pages/students_home.dart';
@@ -122,7 +123,7 @@ class _TeacherLoginState extends State<TeacherLogin> {
                               stream: FirebaseAuth.instance.authStateChanges(),
                               builder: (context, snapshot) {
                                 if (snapshot.hasData) {
-                                  return const StudentsHome();
+                                  return const TeachersHome();
                                 } else {
                                   return const TeacherLogin();
                                 }
