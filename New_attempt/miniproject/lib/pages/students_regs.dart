@@ -95,6 +95,9 @@ class _StudentsRegsState extends State<StudentsRegs> {
                     decoration: InputDecoration(
                       hintStyle: const TextStyle(color: Colors.grey),
                       hintText: "E-Mail",
+                      prefixIcon: const Icon(
+                        Icons.mail,
+                      ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(50),
                       ),

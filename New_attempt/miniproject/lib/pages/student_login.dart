@@ -56,6 +56,7 @@ class _StudentLoginState extends State<StudentLogin> {
 
   @override
   Widget build(BuildContext context) {
+    bool isVisibility = false;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -95,6 +96,9 @@ class _StudentLoginState extends State<StudentLogin> {
                     decoration: InputDecoration(
                       hintStyle: const TextStyle(color: Colors.grey),
                       hintText: "E-Mail",
+                      prefixIcon: const Icon(
+                        Icons.mail,
+                      ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(50),
                       ),
@@ -104,11 +108,28 @@ class _StudentLoginState extends State<StudentLogin> {
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: TextFormField(
+                    obscureText: !isVisibility,
                     controller: _passwordController,
                     style: const TextStyle(color: Colors.black87),
                     decoration: InputDecoration(
                       hintStyle: const TextStyle(color: Colors.grey),
                       hintText: "Password",
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            isVisibility = !isVisibility;
+                          });
+                        },
+                        icon: isVisibility
+                            ? const Icon(
+                                Icons.visibility,
+                                color: Colors.black,
+                              )
+                            : const Icon(
+                                Icons.visibility_off,
+                                color: Colors.grey,
+                              ),
+                      ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(50),
                       ),
