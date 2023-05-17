@@ -91,6 +91,9 @@ class _TeacherLoginState extends State<TeacherLogin> {
                       decoration: InputDecoration(
                         hintStyle: const TextStyle(color: Colors.grey),
                         hintText: "E-Mail",
+                         prefixIcon:const Icon(
+                          Icons.mail,
+                        ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
                         ),
@@ -105,6 +108,9 @@ class _TeacherLoginState extends State<TeacherLogin> {
                       decoration: InputDecoration(
                         hintStyle: const TextStyle(color: Colors.grey),
                         hintText: "Password",
+                        prefixIcon:const Icon(
+                          Icons.lock,
+                        ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
                         ),

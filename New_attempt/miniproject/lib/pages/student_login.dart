@@ -15,6 +15,7 @@ class StudentLogin extends StatefulWidget {
 }
 
 class _StudentLoginState extends State<StudentLogin> {
+  bool _isVisibility=false;
   final _usernameController = TextEditingController();
 
   final _passwordController = TextEditingController();
@@ -92,6 +93,9 @@ class _StudentLoginState extends State<StudentLogin> {
                       decoration: InputDecoration(
                         hintStyle: const TextStyle(color: Colors.grey),
                         hintText: "E-Mail",
+                        prefixIcon:const Icon(
+                          Icons.mail,
+                        ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
                         ),
@@ -101,11 +105,18 @@ class _StudentLoginState extends State<StudentLogin> {
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: TextFormField(
+                      obscureText: !_isVisibility,
                       controller: _passwordController,
                       style: const TextStyle(color: Colors.black87),
                       decoration: InputDecoration(
                         hintStyle: const TextStyle(color: Colors.grey),
                         hintText: "Password",
+                        suffixIcon: IconButton(onPressed: (){
+                          setState(() {
+                            _isVisibility=!_isVisibility;
+                          });
+                        },
+                        icon:_isVisibility ? Icon(Icons.visibility,color: Colors.black,):Icon(Icons.visibility_off,color: Colors.grey,),),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
                         ),
