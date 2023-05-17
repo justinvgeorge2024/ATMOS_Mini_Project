@@ -14,6 +14,7 @@ class TeacherLogin extends StatefulWidget {
 }
 
 class _TeacherLoginState extends State<TeacherLogin> {
+  bool _isVisibility=false;
   final _usernameController = TextEditingController();
 
   final _passwordController = TextEditingController();
@@ -87,9 +88,9 @@ class _TeacherLoginState extends State<TeacherLogin> {
                     padding: const EdgeInsets.all(10.0),
                     child: TextFormField(
                       controller: _usernameController,
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.black),
                       decoration: InputDecoration(
-                        hintStyle: const TextStyle(color: Colors.grey),
+                        hintStyle: const TextStyle(color: Colors.black),
                         hintText: "E-Mail",
                          prefixIcon:const Icon(
                           Icons.mail,
@@ -103,14 +104,21 @@ class _TeacherLoginState extends State<TeacherLogin> {
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: TextFormField(
+                       obscureText: !_isVisibility,
                       controller: _usernameController,
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.black),
                       decoration: InputDecoration(
                         hintStyle: const TextStyle(color: Colors.grey),
                         hintText: "Password",
                         prefixIcon:const Icon(
                           Icons.lock,
                         ),
+                        suffixIcon: IconButton(onPressed: (){
+                          setState(() {
+                            _isVisibility=!_isVisibility;
+                          });
+                        },
+                        icon:_isVisibility ? Icon(Icons.visibility,color: Colors.black,):Icon(Icons.visibility_off,color: Colors.grey,),),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
                         ),

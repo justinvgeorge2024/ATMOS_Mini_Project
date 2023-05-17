@@ -111,6 +111,9 @@ class _StudentLoginState extends State<StudentLogin> {
                       decoration: InputDecoration(
                         hintStyle: const TextStyle(color: Colors.grey),
                         hintText: "Password",
+                        prefixIcon:const Icon(
+                          Icons.lock,
+                        ),
                         suffixIcon: IconButton(onPressed: (){
                           setState(() {
                             _isVisibility=!_isVisibility;
