@@ -58,85 +58,92 @@ class _StudentsRegsState extends State<StudentsRegs> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          appBar: AppBar(
-            elevation: 0.0,
-            backgroundColor: Colors.blueGrey[700],
-            title: const Text(
-              "STUDENT REGISTRATION",
-              style: TextStyle(
-                fontSize: 30,
-                fontStyle: FontStyle.italic,
-                fontWeight: FontWeight.w400,
-                color: Colors.black87,
-              ),
+        appBar: AppBar(
+          elevation: 0.0,
+          backgroundColor: Colors.blueGrey[700],
+          title: const Text(
+            "STUDENT REGISTRATION",
+            style: TextStyle(
+              fontSize: 30,
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w400,
+              color: Colors.black87,
             ),
-            leading: IconButton(
-                onPressed: () {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const StudentLogin()));
-                },
-                icon: const Icon(Icons.arrow_back_ios_new_rounded)),
           ),
-          body: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: TextFormField(
-                      controller: _usernameController,
-                      style: const TextStyle(color: Colors.black87),
-                      decoration: InputDecoration(
-                        hintStyle: const TextStyle(color: Colors.grey),
-                        hintText: "E-Mail",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50),
-                        ),
+          leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) => const StudentLogin()));
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: Colors.black87,
+            ),
+          ),
+        ),
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: TextFormField(
+                    controller: _usernameController,
+                    style: const TextStyle(color: Colors.black87),
+                    decoration: InputDecoration(
+                      hintStyle: const TextStyle(color: Colors.grey),
+                      hintText: "E-Mail",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50),
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: TextFormField(
-                      controller: _passwordController,
-                      style: const TextStyle(color: Colors.black87),
-                      decoration: InputDecoration(
-                        hintStyle: const TextStyle(color: Colors.grey),
-                        hintText: "Password",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50),
-                        ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: TextFormField(
+                    controller: _passwordController,
+                    style: const TextStyle(color: Colors.black87),
+                    decoration: InputDecoration(
+                      hintStyle: const TextStyle(color: Colors.grey),
+                      hintText: "Password",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50),
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        _registerUser();
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      _registerUser();
+                      if (_registerUser() == null) {
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
                             builder: (context) => const StudentsHome()));
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blueGrey[700],
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                      ),
-                      child: isloading
-                          ? const Center(
-                              child: CircularProgressIndicator(),
-                            )
-                          : const Center(
-                              child: Text("Register"),
-                            ),
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blueGrey[700],
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
                     ),
+                    child: isloading
+                        ? const Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : const Center(
+                            child: Text("Register"),
+                          ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          )),
+          ),
+        ),
+      ),
     );
   }
 }

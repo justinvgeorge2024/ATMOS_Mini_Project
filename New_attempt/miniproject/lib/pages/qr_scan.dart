@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:miniproject/pages/teachers_home.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 const bgcolor = Color(0xfffafafa);
@@ -39,6 +40,19 @@ class _QrScannerState extends State<QrScan> {
             fontSize: 18,
             fontWeight: FontWeight.bold,
             letterSpacing: 1,
+          ),
+        ),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) => const TeachersHome(),
+              ),
+            );
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: Colors.black87,
           ),
         ),
       ),

@@ -71,11 +71,15 @@ class _StudentLoginState extends State<StudentLogin> {
             ),
           ),
           leading: IconButton(
-              onPressed: () {
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => const SelectOp()));
-              },
-              icon: const Icon(Icons.arrow_back_ios_new_rounded)),
+            onPressed: () {
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => const SelectOp()));
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: Colors.black87,
+            ),
+          ),
         ),
         body: Center(
           child: Padding(

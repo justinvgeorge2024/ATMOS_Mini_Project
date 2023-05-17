@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:miniproject/pages/qr_scan.dart';
+import 'package:miniproject/pages/qr_gen.dart';
+import 'package:miniproject/pages/select_operator.dart';
 import 'package:miniproject/pages/student_login.dart';
 
 class StudentsHome extends StatefulWidget {
@@ -28,11 +29,15 @@ class _StudentsHomeState extends State<StudentsHome> {
               ),
             ),
             leading: IconButton(
-                onPressed: () {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const StudentLogin()));
-                },
-                icon: const Icon(Icons.arrow_back_ios_new_rounded)),
+              onPressed: () {
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) => const StudentLogin()));
+              },
+              icon: const Icon(
+                Icons.arrow_back_ios_new_rounded,
+                color: Colors.black87,
+              ),
+            ),
           ),
           body: Center(
             child: Column(
@@ -41,7 +46,7 @@ class _StudentsHomeState extends State<StudentsHome> {
                 ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => const QrScan()));
+                        builder: (context) => const QrGenerator()));
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blueGrey[700],
@@ -61,7 +66,11 @@ class _StudentsHomeState extends State<StudentsHome> {
                     'sign out',
                     style: TextStyle(fontSize: 18),
                   ),
-                  onPressed: () => FirebaseAuth.instance.signOut(),
+                  onPressed: () {
+                    FirebaseAuth.instance.signOut();
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => const SelectOp()));
+                  },
                 )
               ],
             ),
