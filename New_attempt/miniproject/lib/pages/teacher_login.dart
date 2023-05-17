@@ -88,11 +88,11 @@ class _TeacherLoginState extends State<TeacherLogin> {
                     padding: const EdgeInsets.all(10.0),
                     child: TextFormField(
                       controller: _usernameController,
-                      style: const TextStyle(color: Colors.black),
+                      style: const TextStyle(color: Colors.black87),
                       decoration: InputDecoration(
                         hintStyle: const TextStyle(color: Colors.black),
                         hintText: "E-Mail",
-                         prefixIcon:const Icon(
+                        prefixIcon:const Icon(
                           Icons.mail,
                         ),
                         border: OutlineInputBorder(
@@ -104,11 +104,11 @@ class _TeacherLoginState extends State<TeacherLogin> {
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: TextFormField(
-                       obscureText: !_isVisibility,
-                      controller: _usernameController,
-                      style: const TextStyle(color: Colors.black),
+                      obscureText: !_isVisibility,
+                      controller: _passwordController,
+                      style: const TextStyle(color: Colors.black87),
                       decoration: InputDecoration(
-                        hintStyle: const TextStyle(color: Colors.grey),
+                        hintStyle: const TextStyle(color: Colors.black),
                         hintText: "Password",
                         prefixIcon:const Icon(
                           Icons.lock,
@@ -160,19 +160,25 @@ class _TeacherLoginState extends State<TeacherLogin> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(0.0),
+                    padding: const EdgeInsets.all(20.0),
                     child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) => const TeachersRegs()));
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blueGrey[700],
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                        ),
-                        child: const Text("Register")),
+                      onPressed: () {
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            builder: (context) => const TeachersRegs()));
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blueGrey[700],
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                      ),
+                      child: isloading
+                          ? const Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : const Center(
+                              child: Text("Register"),
+                            ),
+                    ),
                   ),
                 ],
               ),

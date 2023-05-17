@@ -9,6 +9,7 @@ class TeachersRegs extends StatefulWidget {
 }
 
 class _TeachersRegsState extends State<TeachersRegs> {
+  bool _isVisibility=false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -44,6 +45,9 @@ class _TeachersRegsState extends State<TeachersRegs> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'E-Mail',
+                        prefixIcon: Icon(
+                          Icons.mail,
+                        ),
                         isDense: true, // Added this
                         contentPadding: EdgeInsets.all(8), // Added this
                       ),
@@ -54,7 +58,11 @@ class _TeachersRegsState extends State<TeachersRegs> {
                     child: TextField(
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'Passworrd',
+                        labelText: 'Password',
+                        prefixIcon:Icon(
+                          Icons.lock,
+                        ),
+                        
                         isDense: true, // Added this
                         contentPadding: EdgeInsets.all(8), // Added this
                       ),
@@ -66,6 +74,9 @@ class _TeachersRegsState extends State<TeachersRegs> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Re-Enter Passworrd',
+                        prefixIcon: Icon(
+                          Icons.lock,
+                        ),
                         isDense: true, // Added this
                         contentPadding: EdgeInsets.all(8), // Added this
                       ),

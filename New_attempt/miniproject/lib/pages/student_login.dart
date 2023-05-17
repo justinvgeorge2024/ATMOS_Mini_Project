@@ -91,7 +91,7 @@ class _StudentLoginState extends State<StudentLogin> {
                       controller: _usernameController,
                       style: const TextStyle(color: Colors.black87),
                       decoration: InputDecoration(
-                        hintStyle: const TextStyle(color: Colors.grey),
+                        hintStyle: const TextStyle(color: Colors.black),
                         hintText: "E-Mail",
                         prefixIcon:const Icon(
                           Icons.mail,
@@ -109,7 +109,7 @@ class _StudentLoginState extends State<StudentLogin> {
                       controller: _passwordController,
                       style: const TextStyle(color: Colors.black87),
                       decoration: InputDecoration(
-                        hintStyle: const TextStyle(color: Colors.grey),
+                        hintStyle: const TextStyle(color: Colors.black),
                         hintText: "Password",
                         prefixIcon:const Icon(
                           Icons.lock,
