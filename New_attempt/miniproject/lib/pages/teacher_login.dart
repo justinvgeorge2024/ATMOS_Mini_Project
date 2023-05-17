@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:miniproject/pages/select_operator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:miniproject/pages/students_home.dart';
 import 'package:miniproject/pages/teachers_home.dart';
 import 'package:miniproject/pages/teachers_regs.dart';
 import 'package:miniproject/services/auth_services.dart';
@@ -49,7 +48,7 @@ class _TeacherLoginState extends State<TeacherLogin> {
         print(res);
         return;
       }
-      Get.to(const StudentsHome());
+      Get.to(const TeachersHome());
     } on FirebaseAuthException catch (e) {
       print(e);
     }
