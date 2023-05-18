@@ -14,6 +14,7 @@ class TeacherLogin extends StatefulWidget {
 }
 
 class _TeacherLoginState extends State<TeacherLogin> {
+  bool _isVisibility = false;
   final _usernameController = TextEditingController();
 
   final _passwordController = TextEditingController();
@@ -56,7 +57,6 @@ class _TeacherLoginState extends State<TeacherLogin> {
 
   @override
   Widget build(BuildContext context) {
-    bool isVisibility = false;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -108,7 +108,7 @@ class _TeacherLoginState extends State<TeacherLogin> {
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: TextFormField(
-                    obscureText: !isVisibility,
+                    obscureText: !_isVisibility,
                     controller: _passwordController,
                     style: const TextStyle(color: Colors.black87),
                     decoration: InputDecoration(
@@ -117,10 +117,10 @@ class _TeacherLoginState extends State<TeacherLogin> {
                       suffixIcon: IconButton(
                         onPressed: () {
                           setState(() {
-                            isVisibility = !isVisibility;
+                            _isVisibility = !_isVisibility;
                           });
                         },
-                        icon: isVisibility
+                        icon: _isVisibility
                             ? const Icon(
                                 Icons.visibility,
                                 color: Colors.black,
