@@ -7,6 +7,7 @@ class AuthServices {
       {required String email, required String password}) async {
     String res = "something went wrong";
     try {
+      // ignore: unused_local_variable
       UserCredential cred = await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
       res = "Sucsess";
@@ -20,6 +21,7 @@ class AuthServices {
       {required String email, required String password}) async {
     String res = "something went wrong";
     try {
+      // ignore: unused_local_variable
       UserCredential cred = await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
       res = "Sucsess";

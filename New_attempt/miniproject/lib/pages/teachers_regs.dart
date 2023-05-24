@@ -122,6 +122,7 @@ class _TeachersRegsState extends State<TeachersRegs> {
                     child: ElevatedButton(
                       onPressed: () {
                         _registerUser();
+                        // ignore: unnecessary_null_comparison
                         if (_registerUser() == null) {
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
