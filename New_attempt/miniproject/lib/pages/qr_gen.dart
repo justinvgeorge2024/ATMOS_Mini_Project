@@ -11,7 +11,8 @@ class QrGenerator extends StatefulWidget {
 class _QrGeneratorState extends State<QrGenerator> {
   final TextEditingController _editingController =
       TextEditingController(text: 'asdfas');
-  late String data;
+  // ignore: prefer_typing_uninitialized_variables
+  late var data;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -32,30 +33,31 @@ class _QrGeneratorState extends State<QrGenerator> {
           ),
         ),
         body: Container(
-            child: Column(
-          children: [
-            TextField(
-              decoration:
-                  const InputDecoration(contentPadding: EdgeInsets.all(10)),
-              controller: _editingController,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                setState() {
-                  data = _editingController.text;
-                }
-              },
-              child: const Text("Generate QR"),
-            ),
-            Center(
-              child: QrImage(
-                data: data,
-                version: QrVersions.auto,
-                size: 400,
+          child: Column(
+            children: [
+              TextField(
+                decoration:
+                    const InputDecoration(contentPadding: EdgeInsets.all(10)),
+                controller: _editingController,
               ),
-            ),
-          ],
-        )),
+              ElevatedButton(
+                onPressed: () {
+                  setState() {
+                    data = _editingController.text;
+                  }
+                },
+                child: const Text("Generate QR"),
+              ),
+              const Center(
+                child: Column(
+                  children: [
+                    
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
