@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:miniproject/main.dart';
 import 'package:miniproject/pages/select_operator.dart';
 import 'package:miniproject/pages/students_home.dart';
 import 'package:miniproject/pages/students_regs.dart';
@@ -14,7 +15,7 @@ class StudentLogin extends StatefulWidget {
 }
 
 class _StudentLoginState extends State<StudentLogin> {
-  bool _isVisibility = false;
+  bool _isVisibility=false;
   final _usernameController = TextEditingController();
 
   final _passwordController = TextEditingController();
@@ -90,9 +91,9 @@ class _StudentLoginState extends State<StudentLogin> {
                       controller: _usernameController,
                       style: const TextStyle(color: Colors.black87),
                       decoration: InputDecoration(
-                        hintStyle: const TextStyle(color: Colors.grey),
+                        hintStyle: const TextStyle(color: Colors.black),
                         hintText: "E-Mail",
-                        prefixIcon: const Icon(
+                        prefixIcon:const Icon(
                           Icons.mail,
                         ),
                         border: OutlineInputBorder(
@@ -108,24 +109,17 @@ class _StudentLoginState extends State<StudentLogin> {
                       controller: _passwordController,
                       style: const TextStyle(color: Colors.black87),
                       decoration: InputDecoration(
-                        hintStyle: const TextStyle(color: Colors.grey),
+                        hintStyle: const TextStyle(color: Colors.black),
                         hintText: "Password",
-                        suffixIcon: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              _isVisibility = !_isVisibility;
-                            });
-                          },
-                          icon: _isVisibility
-                              ? const Icon(
-                                  Icons.visibility,
-                                  color: Colors.black,
-                                )
-                              : const Icon(
-                                  Icons.visibility_off,
-                                  color: Colors.grey,
-                                ),
+                        prefixIcon:const Icon(
+                          Icons.lock,
                         ),
+                        suffixIcon: IconButton(onPressed: (){
+                          setState(() {
+                            _isVisibility=!_isVisibility;
+                          });
+                        },
+                        icon:_isVisibility ? Icon(Icons.visibility,color: Colors.black,):Icon(Icons.visibility_off,color: Colors.grey,),),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
                         ),

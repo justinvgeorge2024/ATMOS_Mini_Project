@@ -1,9 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:miniproject/pages/teacher_login.dart';
-
-import '../services/auth_services.dart';
 
 class TeachersRegs extends StatefulWidget {
   const TeachersRegs({super.key});
@@ -13,46 +9,7 @@ class TeachersRegs extends StatefulWidget {
 }
 
 class _TeachersRegsState extends State<TeachersRegs> {
-  final _usernameController = TextEditingController();
-
-  final _passwordController = TextEditingController();
-  bool isloading = false;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _usernameController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
-
-  Future _registerUser() async {
-    try {
-      setState(() {
-        isloading = true;
-      });
-      String email = _usernameController.text.trim();
-      String password = _passwordController.text.trim();
-      Future<String> res =
-          AuthServices.singup(email: email, password: password);
-      setState(() {
-        isloading = false;
-      });
-
-      if (res != "success") {
-        print(res);
-        return;
-      }
-      Get.to(const TeacherLogin());
-    } on FirebaseAuthException catch (e) {
-      print(e);
-    }
-  }
-
+  final bool _isVisibility = false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -70,15 +27,11 @@ class _TeachersRegsState extends State<TeachersRegs> {
               ),
             ),
             leading: IconButton(
-              onPressed: () {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => const TeacherLogin()));
-              },
-              icon: const Icon(
-                Icons.arrow_back_ios_new_rounded,
-                color: Colors.black87,
-              ),
-            ),
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => const TeacherLogin()));
+                },
+                icon: const Icon(Icons.arrow_back_ios_new_rounded)),
           ),
           body: Center(
             child: Padding(
@@ -86,62 +39,63 @@ class _TeachersRegsState extends State<TeachersRegs> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: TextFormField(
-                      controller: _usernameController,
-                      style: const TextStyle(color: Colors.black87),
+                  const Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: TextField(
                       decoration: InputDecoration(
-                        hintStyle: const TextStyle(color: Colors.grey),
-                        hintText: "E-Mail",
-                        prefixIcon: const Icon(
+                        border: OutlineInputBorder(),
+                        labelText: 'E-Mail',
+                        prefixIcon: Icon(
                           Icons.mail,
                         ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50),
-                        ),
+                        isDense: true, // Added this
+                        contentPadding: EdgeInsets.all(8), // Added this
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: TextFormField(
-                      controller: _passwordController,
-                      style: const TextStyle(color: Colors.black87),
+                  const Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: TextField(
                       decoration: InputDecoration(
-                        hintStyle: const TextStyle(color: Colors.grey),
-                        hintText: "Password",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50),
+                        border: OutlineInputBorder(),
+                        labelText: 'Password',
+                        prefixIcon: Icon(
+                          Icons.lock,
                         ),
+
+                        isDense: true, // Added this
+                        contentPadding: EdgeInsets.all(8), // Added this
+                      ),
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Re-Enter Passworrd',
+                        prefixIcon: Icon(
+                          Icons.lock,
+                        ),
+                        isDense: true, // Added this
+                        contentPadding: EdgeInsets.all(8), // Added this
                       ),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(20.0),
+                    padding: const EdgeInsets.all(0.0),
                     child: ElevatedButton(
-                      onPressed: () {
-                        _registerUser();
-                        // ignore: unnecessary_null_comparison
-                        if (_registerUser() == null) {
+                        onPressed: () {
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                  builder: (context) => const TeachersRegs()));
-                        }
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blueGrey[700],
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                      ),
-                      child: isloading
-                          ? const Center(
-                              child: CircularProgressIndicator(),
-                            )
-                          : const Center(
-                              child: Text("Register"),
-                            ),
-                    ),
+                                  builder: (context) => const TeacherLogin()));
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blueGrey[700],
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                        ),
+                        child: const Text("Register")),
                   ),
                 ],
               ),

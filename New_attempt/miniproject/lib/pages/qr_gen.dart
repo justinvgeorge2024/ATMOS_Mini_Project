@@ -9,8 +9,9 @@ class QrGenerator extends StatefulWidget {
 }
 
 class _QrGeneratorState extends State<QrGenerator> {
+  String qrData = "";
   final TextEditingController _editingController =
-      TextEditingController(text: 'asdfas');
+      TextEditingController(text: '');
   // ignore: prefer_typing_uninitialized_variables
   late var data;
   @override
@@ -48,12 +49,8 @@ class _QrGeneratorState extends State<QrGenerator> {
                 },
                 child: const Text("Generate QR"),
               ),
-              const Center(
-                child: Column(
-                  children: [
-                    
-                  ],
-                ),
+              Center(
+                child: SizedBox(child: QrImage('$data'), width: 400, height: 400),
               ),
             ],
           ),
