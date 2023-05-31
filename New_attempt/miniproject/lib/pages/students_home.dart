@@ -1,7 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:miniproject/pages/qr_scan.dart';
-import 'package:miniproject/pages/student_login.dart';
+import 'package:miniproject/pages/qr_gen.dart';
+import 'package:miniproject/pages/select_operator.dart';
+import 'package:miniproject/pref/pref.dart';
 
 class StudentsHome extends StatefulWidget {
   const StudentsHome({super.key});
@@ -30,7 +30,7 @@ class _StudentsHomeState extends State<StudentsHome> {
             leading: IconButton(
                 onPressed: () {
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const StudentLogin()));
+                      builder: (context) => const SelectOp()));
                 },
                 icon: const Icon(Icons.arrow_back_ios_new_rounded)),
           ),
@@ -41,7 +41,7 @@ class _StudentsHomeState extends State<StudentsHome> {
                 ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => const QrScan()));
+                        builder: (context) => const QrGenerator()));
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blueGrey[700],
@@ -51,18 +51,21 @@ class _StudentsHomeState extends State<StudentsHome> {
                   child: const Text("Generate QR"),
                 ),
                 ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    backgroundColor: Colors.blueGrey[700],
-                  ),
-                  icon: const Icon(Icons.arrow_back_ios_new),
-                  label: const Text(
-                    'sign out',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  onPressed: () => FirebaseAuth.instance.signOut(),
-                )
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      backgroundColor: Colors.blueGrey[700],
+                    ),
+                    icon: const Icon(Icons.arrow_back_ios_new),
+                    label: const Text(
+                      'sign out',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    onPressed: () {
+                      PrefManager.setIsLoggedIn(true);
+                    }
+                    // => FirebaseAuth.instance.signOut(),
+                    )
               ],
             ),
           )),

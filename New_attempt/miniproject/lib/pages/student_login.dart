@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:miniproject/main.dart';
 import 'package:miniproject/pages/select_operator.dart';
 import 'package:miniproject/pages/students_home.dart';
 import 'package:miniproject/pages/students_regs.dart';
+import 'package:miniproject/pref/pref.dart';
 import 'package:miniproject/services/auth_services.dart';
 import 'package:get/get.dart';
 
@@ -103,6 +103,7 @@ class _StudentLoginState extends State<StudentLogin> {
                     child: TextFormField(
                       controller: _passwordController,
                       style: const TextStyle(color: Colors.black87),
+                      obscureText: true,
                       decoration: InputDecoration(
                         hintStyle: const TextStyle(color: Colors.grey),
                         hintText: "Password",
@@ -123,6 +124,7 @@ class _StudentLoginState extends State<StudentLogin> {
                               stream: FirebaseAuth.instance.authStateChanges(),
                               builder: (context, snapshot) {
                                 if (snapshot.hasData) {
+                                  PrefManager.setIsLoggedIn(true);
                                   return const StudentsHome();
                                 } else {
                                   return const StudentLogin();

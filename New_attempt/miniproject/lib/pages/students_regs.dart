@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:miniproject/pages/student_login.dart';
 import 'package:miniproject/pages/students_home.dart';
+import 'package:miniproject/pref/pref.dart';
 
 import '../services/auth_services.dart';
 
@@ -116,6 +117,7 @@ class _StudentsRegsState extends State<StudentsRegs> {
                     child: ElevatedButton(
                       onPressed: () {
                         _registerUser();
+                        PrefManager.setIsLoggedIn(true);
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
                             builder: (context) => const StudentsHome()));
                       },

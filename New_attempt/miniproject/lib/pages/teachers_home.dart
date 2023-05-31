@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:miniproject/pages/qr_gen.dart';
+import 'package:miniproject/pages/qr_scan.dart';
+import 'package:miniproject/pages/select_operator.dart';
 import 'package:miniproject/pages/teacher_login.dart';
+import 'package:miniproject/pref/pref.dart';
 
 class TeachersHome extends StatefulWidget {
   const TeachersHome({super.key});
@@ -40,7 +42,7 @@ class _TeachersHomeState extends State<TeachersHome> {
                 ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => const QrGenerator()));
+                        builder: (context) => const QrScan()));
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blueGrey[700],
@@ -49,6 +51,24 @@ class _TeachersHomeState extends State<TeachersHome> {
                   ),
                   child: const Text("Scan QR"),
                 ),
+                ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      backgroundColor: Colors.blueGrey[700],
+                    ),
+                    icon: const Icon(Icons.arrow_back_ios_new),
+                    label: const Text(
+                      'sign out',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    onPressed: () {
+                      PrefManager.setIsLoggedInT(false);
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => const SelectOp()));
+                    }
+                    // => FirebaseAuth.instance.signOut(),
+                    )
               ],
             ),
           )),

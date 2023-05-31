@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:miniproject/pages/select_operator.dart';
+import 'package:miniproject/pages/teachers_home.dart';
 import 'package:miniproject/pages/teachers_regs.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:miniproject/pages/students_home.dart';
+import 'package:miniproject/pref/pref.dart';
 import 'package:miniproject/services/auth_services.dart';
 
 class TeacherLogin extends StatefulWidget {
@@ -87,9 +89,9 @@ class _TeacherLoginState extends State<TeacherLogin> {
                     padding: const EdgeInsets.all(10.0),
                     child: TextFormField(
                       controller: _usernameController,
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.black54),
                       decoration: InputDecoration(
-                        hintStyle: const TextStyle(color: Colors.grey),
+                        hintStyle: const TextStyle(color: Colors.black54),
                         hintText: "E-Mail",
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
@@ -100,10 +102,11 @@ class _TeacherLoginState extends State<TeacherLogin> {
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: TextFormField(
-                      controller: _usernameController,
-                      style: const TextStyle(color: Colors.white),
+                      controller: _passwordController,
+                      style: const TextStyle(color: Colors.black54),
+                      obscureText: true,
                       decoration: InputDecoration(
-                        hintStyle: const TextStyle(color: Colors.grey),
+                        hintStyle: const TextStyle(color: Colors.black54),
                         hintText: "Password",
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
@@ -122,7 +125,8 @@ class _TeacherLoginState extends State<TeacherLogin> {
                               stream: FirebaseAuth.instance.authStateChanges(),
                               builder: (context, snapshot) {
                                 if (snapshot.hasData) {
-                                  return const StudentsHome();
+                                  PrefManager.setIsLoggedInT(true);
+                                  return const TeachersHome();
                                 } else {
                                   return const TeacherLogin();
                                 }

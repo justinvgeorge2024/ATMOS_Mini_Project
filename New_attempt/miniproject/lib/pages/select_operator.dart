@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:miniproject/pages/student_login.dart';
+import 'package:miniproject/pages/students_home.dart';
 import 'package:miniproject/pages/teacher_login.dart';
+import 'package:miniproject/pages/teachers_home.dart';
+import 'package:miniproject/pref/pref.dart';
 
 class SelectOp extends StatelessWidget {
   const SelectOp({super.key});
@@ -8,7 +11,7 @@ class SelectOp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Color.fromARGB(244, 238, 238, 238),
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.transparent,
@@ -34,8 +37,13 @@ class SelectOp extends StatelessWidget {
                   padding: const EdgeInsets.all(20.0),
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => const StudentLogin()));
+                      if (PrefManager.getIsLoggedIn() == false) {
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            builder: (context) => const StudentsHome()));
+                      } else {
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            builder: (context) => const StudentLogin()));
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blueGrey[700],
@@ -49,8 +57,15 @@ class SelectOp extends StatelessWidget {
                   padding: const EdgeInsets.all(20.0),
                   child: ElevatedButton(
                       onPressed: () {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => const TeacherLogin()));
+                        if (PrefManager.getIsLoggedInT() != true) {
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => const TeachersHome()));
+                        } else {
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => const TeacherLogin()));
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blueGrey[700],
