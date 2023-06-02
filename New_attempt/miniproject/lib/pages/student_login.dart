@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:miniproject/main.dart';
 import 'package:miniproject/pages/select_operator.dart';
 import 'package:miniproject/pages/students_home.dart';
 import 'package:miniproject/pages/students_regs.dart';
@@ -58,18 +57,20 @@ class _StudentLoginState extends State<StudentLogin> {
 
   @override
   Widget build(BuildContext context) {
+    
     return SafeArea(
       child: Scaffold(
+         backgroundColor: Colors.black,
           appBar: AppBar(
             elevation: 0.0,
-            backgroundColor: Colors.blueGrey[700],
+            backgroundColor: Color.fromARGB(255, 129, 34, 146),
             title: const Text(
               "STUDENT LOGIN",
               style: TextStyle(
-                fontSize: 30,
-                fontStyle: FontStyle.italic,
+                fontSize: 23,
+               // fontStyle: FontStyle.italic,
                 fontWeight: FontWeight.w400,
-                color: Colors.black87,
+                color: Colors.white,
               ),
             ),
             leading: IconButton(
@@ -89,9 +90,9 @@ class _StudentLoginState extends State<StudentLogin> {
                     padding: const EdgeInsets.all(10.0),
                     child: TextFormField(
                       controller: _usernameController,
-                      style: const TextStyle(color: Colors.black87),
+                      style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        hintStyle: const TextStyle(color: Colors.black),
+                        hintStyle: const TextStyle(color: Colors.white),
                         hintText: "E-Mail",
                         prefixIcon:const Icon(
                           Icons.mail,
@@ -103,13 +104,13 @@ class _StudentLoginState extends State<StudentLogin> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(20.0),
                     child: TextFormField(
                       obscureText: !_isVisibility,
                       controller: _passwordController,
-                      style: const TextStyle(color: Colors.black87),
+                      style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        hintStyle: const TextStyle(color: Colors.black),
+                        hintStyle: const TextStyle(color: Colors.white),
                         hintText: "Password",
                         prefixIcon:const Icon(
                           Icons.lock,
@@ -119,7 +120,7 @@ class _StudentLoginState extends State<StudentLogin> {
                             _isVisibility=!_isVisibility;
                           });
                         },
-                        icon:_isVisibility ? Icon(Icons.visibility,color: Colors.black,):Icon(Icons.visibility_off,color: Colors.grey,),),
+                        icon:_isVisibility ? Icon(Icons.visibility,color: Colors.white,):Icon(Icons.visibility_off,color: Colors.white,),),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
                         ),
@@ -147,7 +148,7 @@ class _StudentLoginState extends State<StudentLogin> {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blueGrey[700],
+                        backgroundColor: Color.fromARGB(255, 129, 34, 146),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
                       ),
@@ -168,7 +169,7 @@ class _StudentLoginState extends State<StudentLogin> {
                             builder: (context) => const StudentsRegs()));
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blueGrey[700],
+                        backgroundColor: Color.fromARGB(255, 129, 34, 146),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
                       ),

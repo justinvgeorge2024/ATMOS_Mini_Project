@@ -59,16 +59,17 @@ class _StudentsRegsState extends State<StudentsRegs> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.black,
         appBar: AppBar(
           elevation: 0.0,
-          backgroundColor: Colors.blueGrey[700],
+          backgroundColor: Color.fromARGB(255, 129, 34, 146),
           title: const Text(
             "STUDENT REGISTRATION",
             style: TextStyle(
-              fontSize: 30,
-              fontStyle: FontStyle.italic,
+              fontSize: 23,
+              //fontStyle: FontStyle.italic,
               fontWeight: FontWeight.w400,
-              color: Colors.black87,
+              color: Colors.white,
             ),
           ),
           leading: IconButton(
@@ -78,23 +79,23 @@ class _StudentsRegsState extends State<StudentsRegs> {
             },
             icon: const Icon(
               Icons.arrow_back_ios_new_rounded,
-              color: Colors.black87,
+              color: Colors.white,
             ),
           ),
         ),
         body: Center(
           child: Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(0.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.all(20.0),
                   child: TextFormField(
                     controller: _usernameController,
-                    style: const TextStyle(color: Colors.black87),
+                    style: const TextStyle(color: Colors.white),
                     decoration: InputDecoration(
-                      hintStyle: const TextStyle(color: Colors.grey),
+                      hintStyle: const TextStyle(color: Colors.white),
                       hintText: "E-Mail",
                       prefixIcon: const Icon(
                         Icons.mail,
@@ -106,13 +107,13 @@ class _StudentsRegsState extends State<StudentsRegs> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.all(20.0),
                   child: TextFormField(
                     obscureText: !_isVisibility,
                     controller: _passwordController,
-                    style: const TextStyle(color: Colors.black87),
+                    style: const TextStyle(color: Colors.white),
                     decoration: InputDecoration(
-                      hintStyle: const TextStyle(color: Colors.grey),
+                      hintStyle: const TextStyle(color: Colors.white),
                       hintText: "Password",
                       prefixIcon:const Icon(
                           Icons.lock,
@@ -122,7 +123,7 @@ class _StudentsRegsState extends State<StudentsRegs> {
                             _isVisibility=!_isVisibility;
                           });
                         },
-                        icon:_isVisibility ? Icon(Icons.visibility,color: Colors.black,):Icon(Icons.visibility_off,color: Colors.grey,),),
+                        icon:_isVisibility ? Icon(Icons.visibility,color: Colors.white,):Icon(Icons.visibility_off,color: Colors.white,),),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(50),
                       ),
@@ -130,17 +131,18 @@ class _StudentsRegsState extends State<StudentsRegs> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(30.0),
                   child: ElevatedButton(
                     onPressed: () {
                       _registerUser();
+                      // ignore: unnecessary_null_comparison
                       if (_registerUser() == null) {
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
                             builder: (context) => const StudentsHome()));
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blueGrey[700],
+                      backgroundColor: Color.fromARGB(255, 129, 34, 146),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                     ),

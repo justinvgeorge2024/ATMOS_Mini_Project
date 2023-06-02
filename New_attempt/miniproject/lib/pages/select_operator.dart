@@ -7,29 +7,27 @@ class SelectOp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizedBox(height: 40);
     return Scaffold(
-      backgroundColor: Colors.grey[200],
-      appBar: AppBar(
-        elevation: 0.0,
-        backgroundColor: Colors.transparent,
-        centerTitle: true,
-        title: const Text(
-          "ATMOS",
-          style: TextStyle(
-            fontSize: 50,
-            fontStyle: FontStyle.italic,
-            fontWeight: FontWeight.bold,
-            color: Colors.black87,
-          ),
-        ),
-      ),
+
+      backgroundColor: Colors.black,
+    
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Center(
             child: Column(
+    
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                const SizedBox(height: 1,),
+                Container(
+                    padding: const EdgeInsets.only(top: 2,),
+                  
+                  child: const Text("ATMOS",
+                  style: TextStyle(color: Colors.white,fontWeight: FontWeight.w400,fontSize: 50.0),),
+                ),
+                const SizedBox(height: 120,),
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: ElevatedButton(
@@ -38,10 +36,11 @@ class SelectOp extends StatelessWidget {
                           builder: (context) => const StudentLogin()));
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blueGrey[700],
+                      backgroundColor: Colors.purple,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                     ),
+                    
                     child: const Text("STUDENT"),
                   ),
                 ),
@@ -53,7 +52,7 @@ class SelectOp extends StatelessWidget {
                             builder: (context) => const TeacherLogin()));
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blueGrey[700],
+                        backgroundColor: Colors.purple,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
                       ),

@@ -58,16 +58,17 @@ class _TeachersRegsState extends State<TeachersRegs> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+         backgroundColor: Colors.black,
           appBar: AppBar(
             elevation: 0.0,
-            backgroundColor: Colors.blueGrey[700],
+            backgroundColor: Color.fromARGB(255, 129, 34, 146),
             title: const Text(
               "TEACHER REGISTRATION",
               style: TextStyle(
-                fontSize: 30,
-                fontStyle: FontStyle.italic,
+                fontSize: 23,
+                //fontStyle: FontStyle.italic,
                 fontWeight: FontWeight.w400,
-                color: Colors.black87,
+                color: Colors.white,
               ),
             ),
             leading: IconButton(
@@ -77,7 +78,7 @@ class _TeachersRegsState extends State<TeachersRegs> {
               },
               icon: const Icon(
                 Icons.arrow_back_ios_new_rounded,
-                color: Colors.black87,
+                color: Colors.white,
               ),
             ),
           ),
@@ -91,9 +92,9 @@ class _TeachersRegsState extends State<TeachersRegs> {
                     padding: const EdgeInsets.all(10.0),
                     child: TextFormField(
                       controller: _usernameController,
-                      style: const TextStyle(color: Colors.black87),
+                      style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        hintStyle: const TextStyle(color: Colors.grey),
+                        hintStyle: const TextStyle(color: Colors.white),
                         hintText: "E-Mail",
                         prefixIcon: const Icon(
                           Icons.mail,
@@ -109,9 +110,9 @@ class _TeachersRegsState extends State<TeachersRegs> {
                     child: TextFormField(
                       obscureText: !_isVisibility,
                       controller: _passwordController,
-                      style: const TextStyle(color: Colors.black87),
+                      style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        hintStyle: const TextStyle(color: Colors.grey),
+                        hintStyle: const TextStyle(color: Colors.white),
                         hintText: "Password",
                          prefixIcon:const Icon(
                           Icons.lock,
@@ -129,10 +130,11 @@ class _TeachersRegsState extends State<TeachersRegs> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(20.0),
+                    padding: const EdgeInsets.all(30.0),
                     child: ElevatedButton(
                       onPressed: () {
                         _registerUser();
+                        // ignore: unnecessary_null_comparison
                         if (_registerUser() == null) {
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
@@ -140,7 +142,7 @@ class _TeachersRegsState extends State<TeachersRegs> {
                         }
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blueGrey[700],
+                        backgroundColor: Color.fromARGB(255, 129, 34, 146),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
                       ),
