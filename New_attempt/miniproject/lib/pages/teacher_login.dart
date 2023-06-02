@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:miniproject/pages/select_operator.dart';
 import 'package:miniproject/pages/teachers_regs.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:miniproject/pages/students_home.dart';
+import 'package:miniproject/pages/teachers_home.dart';
 import 'package:miniproject/services/auth_services.dart';
 
 class TeacherLogin extends StatefulWidget {
@@ -49,7 +49,7 @@ class _TeacherLoginState extends State<TeacherLogin> {
         print(res);
         return;
       }
-      Get.to(const StudentsHome());
+      Get.to(const TeachersHome());
     } on FirebaseAuthException catch (e) {
       print(e);
     }
@@ -62,7 +62,7 @@ class _TeacherLoginState extends State<TeacherLogin> {
          backgroundColor: Colors.black,
           appBar: AppBar(
             elevation: 0.0,
-            backgroundColor:Color.fromARGB(255, 129, 34, 146),
+            backgroundColor:Colors.indigo[900],
             title: const Text(
               "TEACHER LOGIN",
               style: TextStyle(
@@ -91,6 +91,7 @@ class _TeacherLoginState extends State<TeacherLogin> {
                       controller: _usernameController,
                       style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
+                        fillColor: Colors.blue, 
                         hintStyle: const TextStyle(color: Colors.white),
                         hintText: "E-Mail",
                         prefixIcon:const Icon(
@@ -137,7 +138,7 @@ class _TeacherLoginState extends State<TeacherLogin> {
                               stream: FirebaseAuth.instance.authStateChanges(),
                               builder: (context, snapshot) {
                                 if (snapshot.hasData) {
-                                  return const StudentsHome();
+                                  return const TeachersHome();
                                 } else {
                                   return const TeacherLogin();
                                 }
@@ -147,7 +148,7 @@ class _TeacherLoginState extends State<TeacherLogin> {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 129, 34, 146),
+                        backgroundColor: Colors.indigo[900],
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
                       ),
@@ -168,7 +169,7 @@ class _TeacherLoginState extends State<TeacherLogin> {
                             builder: (context) => const TeachersRegs()));
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 129, 34, 146),
+                        backgroundColor: Colors.indigo[900],
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
                       ),

@@ -59,10 +59,10 @@ class _StudentsRegsState extends State<StudentsRegs> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white,
         appBar: AppBar(
           elevation: 0.0,
-          backgroundColor: Color.fromARGB(255, 129, 34, 146),
+          backgroundColor: Colors.indigo[900],
           title: const Text(
             "STUDENT REGISTRATION",
             style: TextStyle(
@@ -142,7 +142,7 @@ class _StudentsRegsState extends State<StudentsRegs> {
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 129, 34, 146),
+                      backgroundColor: Colors.indigo[900],
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                     ),

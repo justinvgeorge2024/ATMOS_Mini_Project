@@ -16,12 +16,12 @@ class _StudentsHomeState extends State<StudentsHome> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white,
           appBar: AppBar(
             elevation: 0.0,
-            backgroundColor: const Color.fromARGB(255, 129, 34, 146),
+            backgroundColor:  Colors.indigo[900],
             title: const Text(
-              "STUDENT HOME",
+              "   STUDENT HOME",
               style: TextStyle(
                 fontSize: 23,
                 //fontStyle: FontStyle.italic,
@@ -64,7 +64,7 @@ class _StudentsHomeState extends State<StudentsHome> {
                         builder: (context) => const QrGenerator()));
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 129, 34, 146),
+                    backgroundColor: Colors.indigo[900],
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                   ),

@@ -58,10 +58,10 @@ class _TeachersRegsState extends State<TeachersRegs> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-         backgroundColor: Colors.black,
+         backgroundColor: Colors.white,
           appBar: AppBar(
             elevation: 0.0,
-            backgroundColor: Color.fromARGB(255, 129, 34, 146),
+            backgroundColor: Colors.indigo[900],
             title: const Text(
               "TEACHER REGISTRATION",
               style: TextStyle(
@@ -122,7 +122,7 @@ class _TeachersRegsState extends State<TeachersRegs> {
                             _isVisibility=!_isVisibility;
                           });
                         },
-                        icon:_isVisibility ? Icon(Icons.visibility,color: Colors.black,):Icon(Icons.visibility_off,color: Colors.grey,),),
+                        icon:_isVisibility ? Icon(Icons.visibility,color: Colors.white,):Icon(Icons.visibility_off,color: Colors.grey,),),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
                         ),
@@ -142,7 +142,7 @@ class _TeachersRegsState extends State<TeachersRegs> {
                         }
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 129, 34, 146),
+                        backgroundColor: Colors.indigo[900],
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
                       ),

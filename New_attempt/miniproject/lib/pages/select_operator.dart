@@ -10,7 +10,7 @@ class SelectOp extends StatelessWidget {
     SizedBox(height: 40);
     return Scaffold(
 
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
     
       body: SafeArea(
         child: Padding(
@@ -25,7 +25,7 @@ class SelectOp extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 2,),
                   
                   child: const Text("ATMOS",
-                  style: TextStyle(color: Colors.white,fontWeight: FontWeight.w400,fontSize: 50.0),),
+                  style: TextStyle(color: Colors.indigo,fontWeight: FontWeight.w400,fontSize: 50.0),),
                 ),
                 const SizedBox(height: 120,),
                 Padding(
@@ -36,9 +36,10 @@ class SelectOp extends StatelessWidget {
                           builder: (context) => const StudentLogin()));
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.purple,
+                      backgroundColor: Colors.indigo[900],
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
+                          
                     ),
                     
                     child: const Text("STUDENT"),
@@ -52,7 +53,7 @@ class SelectOp extends StatelessWidget {
                             builder: (context) => const TeacherLogin()));
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.purple,
+                        backgroundColor: Colors.indigo[900],
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
                       ),

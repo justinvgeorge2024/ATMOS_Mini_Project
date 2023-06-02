@@ -60,12 +60,12 @@ class _StudentLoginState extends State<StudentLogin> {
     
     return SafeArea(
       child: Scaffold(
-         backgroundColor: Colors.black,
+         backgroundColor: Colors.white,
           appBar: AppBar(
             elevation: 0.0,
-            backgroundColor: Color.fromARGB(255, 129, 34, 146),
+            backgroundColor: Colors.indigo[900],
             title: const Text(
-              "STUDENT LOGIN",
+              "     STUDENT LOGIN",
               style: TextStyle(
                 fontSize: 23,
                // fontStyle: FontStyle.italic,
@@ -90,12 +90,13 @@ class _StudentLoginState extends State<StudentLogin> {
                     padding: const EdgeInsets.all(10.0),
                     child: TextFormField(
                       controller: _usernameController,
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.black),
                       decoration: InputDecoration(
-                        hintStyle: const TextStyle(color: Colors.white),
+                        hintStyle: const TextStyle(color: Colors.black),
                         hintText: "E-Mail",
                         prefixIcon:const Icon(
                           Icons.mail,
+                          color:Colors.grey
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
@@ -108,19 +109,20 @@ class _StudentLoginState extends State<StudentLogin> {
                     child: TextFormField(
                       obscureText: !_isVisibility,
                       controller: _passwordController,
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.black),
                       decoration: InputDecoration(
-                        hintStyle: const TextStyle(color: Colors.white),
+                        hintStyle: const TextStyle(color: Colors.black),
                         hintText: "Password",
                         prefixIcon:const Icon(
                           Icons.lock,
+                          color:Colors.grey
                         ),
                         suffixIcon: IconButton(onPressed: (){
                           setState(() {
                             _isVisibility=!_isVisibility;
                           });
                         },
-                        icon:_isVisibility ? Icon(Icons.visibility,color: Colors.white,):Icon(Icons.visibility_off,color: Colors.white,),),
+                        icon:_isVisibility ? Icon(Icons.visibility,color: Colors.grey,):Icon(Icons.visibility_off,color: Colors.grey,),),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
                         ),
@@ -148,7 +150,7 @@ class _StudentLoginState extends State<StudentLogin> {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 129, 34, 146),
+                        backgroundColor: Colors.indigo[900],
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
                       ),
@@ -169,7 +171,7 @@ class _StudentLoginState extends State<StudentLogin> {
                             builder: (context) => const StudentsRegs()));
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 129, 34, 146),
+                        backgroundColor: Colors.indigo[900],
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
                       ),
