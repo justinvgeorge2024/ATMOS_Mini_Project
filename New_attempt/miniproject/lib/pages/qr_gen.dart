@@ -49,9 +49,9 @@ class _QrGeneratorState extends State<QrGenerator> {
                 },
                 child: const Text("Generate QR"),
               ),
-              Center(
-                child: SizedBox(child: QrImage('$data'), width: 400, height: 400),
-              ),
+              const Center(
+                  // child: SizedBox(child: QrImage('$data'), width: 400, height: 400),
+                  ),
             ],
           ),
         ),
