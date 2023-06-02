@@ -59,12 +59,12 @@ class _TeacherLoginState extends State<TeacherLogin> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-         backgroundColor: Colors.black,
+         backgroundColor: Colors.white,
           appBar: AppBar(
             elevation: 0.0,
             backgroundColor:Colors.indigo[900],
             title: const Text(
-              "TEACHER LOGIN",
+              "   TEACHER LOGIN",
               style: TextStyle(
                 fontSize: 23,
                 //fontStyle: FontStyle.italic,
@@ -89,10 +89,10 @@ class _TeacherLoginState extends State<TeacherLogin> {
                     padding: const EdgeInsets.all(10.0),
                     child: TextFormField(
                       controller: _usernameController,
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.black),
                       decoration: InputDecoration(
                         fillColor: Colors.blue, 
-                        hintStyle: const TextStyle(color: Colors.white),
+                        hintStyle: const TextStyle(color: Colors.black),
                         hintText: "E-Mail",
                         prefixIcon:const Icon(
                           Icons.mail,
@@ -108,9 +108,9 @@ class _TeacherLoginState extends State<TeacherLogin> {
                     child: TextFormField(
                       obscureText: !_isVisibility,
                       controller: _passwordController,
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.black),
                       decoration: InputDecoration(
-                        hintStyle: const TextStyle(color: Colors.white),
+                        hintStyle: const TextStyle(color: Colors.black),
                         hintText: "Password",
                         prefixIcon:const Icon(
                           Icons.lock,
@@ -120,7 +120,7 @@ class _TeacherLoginState extends State<TeacherLogin> {
                             _isVisibility=!_isVisibility;
                           });
                         },
-                        icon:_isVisibility ? Icon(Icons.visibility,color: Colors.white,):Icon(Icons.visibility_off,color: Colors.white,),),
+                        icon:_isVisibility ? Icon(Icons.visibility,color: Colors.white,):Icon(Icons.visibility_off,color: Colors.black,),),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
                         ),
