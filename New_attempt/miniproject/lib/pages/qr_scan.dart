@@ -32,11 +32,12 @@ class _QrScannerState extends State<QrScan> {
     return Scaffold(
       backgroundColor: bgcolor,
       appBar: AppBar(
+        backgroundColor: Colors.purple[700],
         centerTitle: true,
         title: const Text(
           "QR Scanner",
           style: TextStyle(
-            color: Colors.black87,
+            color: Colors.white,
             fontSize: 18,
             fontWeight: FontWeight.bold,
             letterSpacing: 1,
@@ -52,7 +53,7 @@ class _QrScannerState extends State<QrScan> {
           },
           icon: const Icon(
             Icons.arrow_back_ios_new_rounded,
-            color: Colors.black87,
+            color: Colors.white,
           ),
         ),
       ),
@@ -61,10 +62,10 @@ class _QrScannerState extends State<QrScan> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            Expanded(
+            const Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text(
                     "Place QR code in the area",
                     style: TextStyle(

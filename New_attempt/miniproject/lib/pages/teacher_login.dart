@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:miniproject/pages/select_operator.dart';
+import 'package:miniproject/pages/teachers_home.dart';
 import 'package:miniproject/pages/teachers_regs.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:miniproject/pages/students_home.dart';
 import 'package:miniproject/services/auth_services.dart';
+import 'package:miniproject/pages/qr_scan.dart';
 
 class TeacherLogin extends StatefulWidget {
   const TeacherLogin({super.key});
@@ -14,7 +16,7 @@ class TeacherLogin extends StatefulWidget {
 }
 
 class _TeacherLoginState extends State<TeacherLogin> {
-  bool _isVisibility=false;
+  bool _isVisibility = false;
   final _usernameController = TextEditingController();
 
   final _passwordController = TextEditingController();
@@ -59,21 +61,22 @@ class _TeacherLoginState extends State<TeacherLogin> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+          backgroundColor: bgcolor,
           appBar: AppBar(
             elevation: 0.0,
-            backgroundColor: Colors.blueGrey[700],
+            backgroundColor: const Color.fromARGB(255, 129, 34, 146),
             title: const Text(
               "TEACHER LOGIN",
               style: TextStyle(
-                fontSize: 30,
-                fontStyle: FontStyle.italic,
+                fontSize: 23,
+                //fontStyle: FontStyle.italic,
                 fontWeight: FontWeight.w400,
-                color: Colors.black87,
+                color: Colors.white,
               ),
             ),
             leading: IconButton(
                 onPressed: () {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => const SelectOp()));
                 },
                 icon: const Icon(Icons.arrow_back_ios_new_rounded)),
@@ -88,11 +91,11 @@ class _TeacherLoginState extends State<TeacherLogin> {
                     padding: const EdgeInsets.all(10.0),
                     child: TextFormField(
                       controller: _usernameController,
-                      style: const TextStyle(color: Colors.black87),
+                      style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        hintStyle: const TextStyle(color: Colors.black),
+                        hintStyle: const TextStyle(color: Colors.white),
                         hintText: "E-Mail",
-                        prefixIcon:const Icon(
+                        prefixIcon: const Icon(
                           Icons.mail,
                         ),
                         border: OutlineInputBorder(
@@ -106,19 +109,29 @@ class _TeacherLoginState extends State<TeacherLogin> {
                     child: TextFormField(
                       obscureText: !_isVisibility,
                       controller: _passwordController,
-                      style: const TextStyle(color: Colors.black87),
+                      style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        hintStyle: const TextStyle(color: Colors.black),
+                        hintStyle: const TextStyle(color: Colors.white),
                         hintText: "Password",
-                        prefixIcon:const Icon(
+                        prefixIcon: const Icon(
                           Icons.lock,
                         ),
-                        suffixIcon: IconButton(onPressed: (){
-                          setState(() {
-                            _isVisibility=!_isVisibility;
-                          });
-                        },
-                        icon:_isVisibility ? Icon(Icons.visibility,color: Colors.black,):Icon(Icons.visibility_off,color: Colors.grey,),),
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              _isVisibility = !_isVisibility;
+                            });
+                          },
+                          icon: _isVisibility
+                              ? const Icon(
+                                  Icons.visibility,
+                                  color: Colors.white,
+                                )
+                              : const Icon(
+                                  Icons.visibility_off,
+                                  color: Colors.white,
+                                ),
+                        ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50),
                         ),
@@ -126,7 +139,7 @@ class _TeacherLoginState extends State<TeacherLogin> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(20.0),
+                    padding: const EdgeInsets.all(30.0),
                     child: ElevatedButton(
                       onPressed: () {
                         _loginUser();
@@ -136,7 +149,7 @@ class _TeacherLoginState extends State<TeacherLogin> {
                               stream: FirebaseAuth.instance.authStateChanges(),
                               builder: (context, snapshot) {
                                 if (snapshot.hasData) {
-                                  return const StudentsHome();
+                                  return const TeachersHome();
                                 } else {
                                   return const TeacherLogin();
                                 }
@@ -146,7 +159,8 @@ class _TeacherLoginState extends State<TeacherLogin> {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blueGrey[700],
+                        backgroundColor:
+                            const Color.fromARGB(255, 129, 34, 146),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
                       ),
@@ -163,11 +177,12 @@ class _TeacherLoginState extends State<TeacherLogin> {
                     padding: const EdgeInsets.all(20.0),
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => const TeachersRegs()));
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blueGrey[700],
+                        backgroundColor:
+                            const Color.fromARGB(255, 129, 34, 146),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
                       ),

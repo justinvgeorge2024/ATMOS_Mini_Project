@@ -8,53 +8,43 @@ class QrGenerator extends StatefulWidget {
   State<QrGenerator> createState() => _QrGeneratorState();
 }
 
+const Q1 = "xfgdsdftghdfgh";
+
 class _QrGeneratorState extends State<QrGenerator> {
-  String qrData = "";
-  final TextEditingController _editingController =
-      TextEditingController(text: '');
-  // ignore: prefer_typing_uninitialized_variables
-  late var data;
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.grey[200],
-        appBar: AppBar(
-          elevation: 0.0,
-          backgroundColor: Colors.transparent,
-          centerTitle: true,
-          title: const Text(
-            "QR-Generator",
-            style: TextStyle(
-              fontSize: 50,
-              fontStyle: FontStyle.italic,
-              fontWeight: FontWeight.bold,
-              color: Colors.black87,
-            ),
-          ),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 129, 34, 146),
+        title: const Text(
+          "data",
         ),
-        body: Container(
-          child: Column(
+      ),
+      body: Column(
+        // mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Row(children: [
+            Text(
+              'name',
+            ),
+          ]),
+          SizedBox(
+            height: MediaQuery.of(context).size.height / 3.3,
+          ),
+          Row(
             children: [
-              TextField(
-                decoration:
-                    const InputDecoration(contentPadding: EdgeInsets.all(10)),
-                controller: _editingController,
+              SizedBox(
+                width: MediaQuery.of(context).size.width / 4.8,
               ),
-              ElevatedButton(
-                onPressed: () {
-                  setState() {
-                    data = _editingController.text;
-                  }
-                },
-                child: const Text("Generate QR"),
+              QrImageView(
+                data: Q1,
+                version: QrVersions.auto,
+                size: 200.0,
               ),
-              const Center(
-                  // child: SizedBox(child: QrImage('$data'), width: 400, height: 400),
-                  ),
             ],
           ),
-        ),
+        ],
       ),
     );
   }

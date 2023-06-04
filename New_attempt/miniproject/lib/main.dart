@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:miniproject/pages/select_operator.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:miniproject/pages/splashscreen.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -13,11 +14,8 @@ void main() async {
   );
 }
 
-
 class MyApp extends StatelessWidget {
-  
-
-   const MyApp({super.key});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +25,7 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0.0,
       )),
-      home: const SelectOp(),
+      home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
       title: 'ATMOS',
     );

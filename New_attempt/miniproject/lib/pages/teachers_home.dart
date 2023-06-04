@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:miniproject/pages/qr_gen.dart';
+import 'package:miniproject/pages/qr_scan.dart';
+import 'package:miniproject/pages/select_operator.dart';
 import 'package:miniproject/pages/teacher_login.dart';
 
 class TeachersHome extends StatefulWidget {
@@ -16,22 +18,39 @@ class _TeachersHomeState extends State<TeachersHome> {
       child: Scaffold(
           appBar: AppBar(
             elevation: 0.0,
-            backgroundColor: Colors.blueGrey[700],
+            backgroundColor: Colors.purple[700],
             title: const Text(
               "TEACHER HOME",
               style: TextStyle(
                 fontSize: 30,
                 fontStyle: FontStyle.italic,
                 fontWeight: FontWeight.w400,
-                color: Colors.black87,
+                color: Colors.white,
               ),
             ),
-            leading: IconButton(
+            actions: <Widget>[
+              IconButton(
+                icon: const Icon(
+                  Icons.logout_sharp,
+                  color: Colors.white,
+                ),
                 onPressed: () {
+                  FirebaseAuth.instance.signOut();
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const TeacherLogin()));
+                      builder: (context) => const SelectOp()));
                 },
-                icon: const Icon(Icons.arrow_back_ios_new_rounded)),
+              )
+            ],
+            leading: IconButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const TeacherLogin()));
+              },
+              icon: const Icon(
+                Icons.arrow_back_ios_new_rounded,
+                color: Colors.white,
+              ),
+            ),
           ),
           body: Center(
             child: Column(
@@ -39,11 +58,11 @@ class _TeachersHomeState extends State<TeachersHome> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => const QrGenerator()));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const QrScan()));
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blueGrey[700],
+                    backgroundColor: Colors.purple[700],
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                   ),
