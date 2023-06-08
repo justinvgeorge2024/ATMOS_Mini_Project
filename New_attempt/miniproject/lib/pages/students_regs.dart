@@ -44,27 +44,35 @@ class _StudentsRegsState extends State<StudentsRegs> {
       String password = _passwordController.text.trim();
 
       FirebaseAuth auth = FirebaseAuth.instance;
+      await auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      // await AuthServices.singup(email: email, password: password);
       User? user = FirebaseAuth.instance.currentUser;
-      await auth
-          .createUserWithEmailAndPassword(email: email, password: password)
-          .then((value) => FirebaseFirestore.instance
-              .collection("Users")
-              .doc(user?.email)
-              .set({'name': username, 'email': email}));
+      await FirebaseFirestore.instance
+          .collection("Users")
+          .doc(user?.email)
+          .set({'name': username, 'email': email});
       setState(() {
         isloading = false;
       });
-      Future<String> res =
-          AuthServices.singup(email: email, password: password);
-
-      if (res != "success") {
-        print(res);
-        return;
-      }
+      // Future<String> res = AuthServices.login(email: email, password: password);
+      // print("print res- after authservices  login : $res");
+      // print(res);
+      // if (res != "success") {
+      //   print(res);
+      //   return;
+      // }
       Get.to(const StudentLogin());
     } on FirebaseAuthException catch (e) {
       print(e);
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Email is already used by another account'),
+        duration: Duration(seconds: 5),
+      ));
     }
+    //  on FirebaseAuthException catch (e) {
+    //   print(e);
+    // }
   }
 
   @override

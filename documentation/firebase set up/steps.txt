@@ -1,0 +1,42 @@
+pre installation: installing npm
+----
+run : npm install -g npm@9.6.6
+----
+
+
+
+STEPS
+-----
+
+1. Installing firebase cli 
+use the command:
+
+-----
+npm install -g firebase-tools
+----
+
+npm must be installed before running this
+link: https://firebase.google.com/docs/cli#install-cli-windows
+
+
+2.open command prompt ( did not work in powershell or git bash for me)
+
+run :  firebase login
+
+and login to your account.
+
+3. run : firebase projects:list
+this will show the projects that are linked in your account.
+if it shows empty. its ok.
+
+
+4. run: dart pub global activate flutterfire_cli
+
+----
+this might show a warning where the [ C:/...users/app... ] is not included in the path...
+copy that C:/.../users  path
+then open the " edit environmental variables" in windows search
+and press edit environment variables. under system , select path and click edit.
+click add new and paste the path that was already copied.
+press ok and exit it.
+
