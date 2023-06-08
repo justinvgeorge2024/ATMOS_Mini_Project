@@ -18,7 +18,7 @@ class _StudentsRegsState extends State<StudentsRegs> {
   bool _isVisibility = false;
   final _emailController = TextEditingController();
   final _usernameController = TextEditingController();
-
+  final _adminnoController = TextEditingController();
   final _passwordController = TextEditingController();
   bool isloading = false;
 
@@ -42,7 +42,7 @@ class _StudentsRegsState extends State<StudentsRegs> {
       String username = _usernameController.text.trim();
       String email = _emailController.text.trim();
       String password = _passwordController.text.trim();
-
+      String adno = _adminnoController.text.trim();
       FirebaseAuth auth = FirebaseAuth.instance;
       await auth.createUserWithEmailAndPassword(
           email: email, password: password);
@@ -51,7 +51,7 @@ class _StudentsRegsState extends State<StudentsRegs> {
       await FirebaseFirestore.instance
           .collection("Users")
           .doc(user?.email)
-          .set({'name': username, 'email': email});
+          .set({'name': username, 'email': email, 'admno' : adno});
       setState(() {
         isloading = false;
       });
@@ -104,106 +104,125 @@ class _StudentsRegsState extends State<StudentsRegs> {
             ),
           ),
         ),
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(0.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: TextFormField(
-                    controller: _usernameController,
-                    style: const TextStyle(color: Colors.black),
-                    decoration: InputDecoration(
-                      hintStyle: const TextStyle(color: Colors.grey),
-                      hintText: "Username",
-                      prefixIcon: const Icon(
-                        Icons.person,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: TextFormField(
-                    controller: _emailController,
-                    style: const TextStyle(color: Colors.black),
-                    decoration: InputDecoration(
-                      hintStyle: const TextStyle(color: Colors.grey),
-                      hintText: "E-Mail",
-                      prefixIcon: const Icon(
-                        Icons.mail,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(50),
+        body: SingleChildScrollView(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(0.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: TextFormField(
+                      controller: _usernameController,
+                      style: const TextStyle(color: Colors.black),
+                      decoration: InputDecoration(
+                        hintStyle: const TextStyle(color: Colors.grey),
+                        hintText: "Username",
+                        prefixIcon: const Icon(
+                          Icons.person,
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: TextFormField(
-                    obscureText: !_isVisibility,
-                    controller: _passwordController,
-                    style: const TextStyle(color: Colors.black),
-                    decoration: InputDecoration(
-                      hintStyle: const TextStyle(color: Colors.grey),
-                      hintText: "Password",
-                      prefixIcon: const Icon(
-                        Icons.lock,
-                      ),
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            _isVisibility = !_isVisibility;
-                          });
-                        },
-                        icon: _isVisibility
-                            ? const Icon(
-                                Icons.visibility,
-                                color: Colors.black,
-                              )
-                            : const Icon(
-                                Icons.visibility_off,
-                                color: Colors.black,
-                              ),
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(50),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: TextFormField(
+                      controller: _emailController,
+                      style: const TextStyle(color: Colors.black),
+                      decoration: InputDecoration(
+                        hintStyle: const TextStyle(color: Colors.grey),
+                        hintText: "E-Mail",
+                        prefixIcon: const Icon(
+                          Icons.mail,
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(30.0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      _registerUser();
-                      // ignore: unnecessary_null_comparison
-                      if (_registerUser() == null) {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => const StudentLogin()));
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 129, 34, 146),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: TextFormField(
+                      obscureText: !_isVisibility,
+                      controller: _passwordController,
+                      style: const TextStyle(color: Colors.black),
+                      decoration: InputDecoration(
+                        hintStyle: const TextStyle(color: Colors.grey),
+                        hintText: "Password",
+                        prefixIcon: const Icon(
+                          Icons.lock,
+                        ),
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              _isVisibility = !_isVisibility;
+                            });
+                          },
+                          icon: _isVisibility
+                              ? const Icon(
+                                  Icons.visibility,
+                                  color: Colors.black,
+                                )
+                              : const Icon(
+                                  Icons.visibility_off,
+                                  color: Colors.black,
+                                ),
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                      ),
                     ),
-                    child: isloading
-                        ? const Center(
-                            child: CircularProgressIndicator(),
-                          )
-                        : const Center(
-                            child: Text("Register"),
-                          ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: TextFormField(
+                      controller: _adminnoController,
+                      style: const TextStyle(color: Colors.black),
+                      decoration: InputDecoration(
+                        hintStyle: const TextStyle(color: Colors.grey),
+                        hintText: "Admission Number",
+                        prefixIcon: const Icon(
+                          Icons.assignment_ind_outlined,
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(30.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        _registerUser();
+                        // ignore: unnecessary_null_comparison
+                        if (_registerUser() == null) {
+                          Navigator.of(context).pushReplacement(MaterialPageRoute(
+                              builder: (context) => const StudentLogin()));
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromARGB(255, 129, 34, 146),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                      ),
+                      child: isloading
+                          ? const Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : const Center(
+                              child: Text("Register"),
+                            ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
