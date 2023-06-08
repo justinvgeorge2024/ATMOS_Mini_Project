@@ -24,7 +24,7 @@ class _QrGeneratorState extends State<QrGenerator> {
       body: Column(
         // mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Row(children: [
+           Row(children: [
             Text(
               'name',
             ),
