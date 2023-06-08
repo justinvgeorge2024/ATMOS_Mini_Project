@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "311307894552",
+    "project_id": "atmos-6c8a9",
+    "storage_bucket": "atmos-6c8a9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:311307894552:android:c7d17f07d88b544ce0686d",
+        "android_client_info": {
+          "package_name": "com.example.miniproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "311307894552-aelrnmgjcj9mgb5kh19kc5fffses6pl8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCqBiqEqvuQ8zwuLa4RCz9aoNa4pGsahk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "311307894552-7ka58ivdmcbi4lbbjrf14kf3m77qcalv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "311307894552-jn3r3m3tbc32c56vsk6u876o2e0jl1lh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.miniproject"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

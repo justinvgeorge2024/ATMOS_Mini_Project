@@ -2,7 +2,6 @@ import 'dart:ffi';
 
 import 'package:either_dart/either.dart';
 import 'package:flutter/material.dart';
-import 'package:seenit/services/rest_services.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,42 +14,42 @@ class _HomeScreenState extends State<HomeScreen> {
   List<String> products = ["Bed", "Sofa", "Chair"];
   List<String> productDetails = ["QueenSize", "King Size"];
   List<int> price = [1000, 2000, 3000];
-  bool _isLoading = true;
+  final bool _isLoading = true;
   String url = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("homescreen")),
+      appBar: AppBar(title: const Text("homescreen")),
       drawer: Drawer(
-        child: ListView(padding: EdgeInsets.all(2.0), children: [
-          DrawerHeader(
+        child: ListView(padding: const EdgeInsets.all(2.0), children: [
+          const DrawerHeader(
             decoration: BoxDecoration(
               color: Colors.green,
             ),
             child: Text("Drawer-"),
           ),
-          ListTile(
+          const ListTile(
             title: Text("Hello"),
             subtitle: Text("Item 1"),
             leading: Text("leading"),
             trailing: Text("trailing"),
           ),
-          ListTile(
+          const ListTile(
             title: Text("list 2"),
             subtitle: Text("Item 2"),
             tileColor: Colors.grey,
           ),
           ExpansionTile(
-            title: Text("Expansion tile"),
+            title: const Text("Expansion tile"),
             children: [
               Padding(
-                padding: EdgeInsets.all(5.0),
+                padding: const EdgeInsets.all(5.0),
                 child: Align(
                   alignment: Alignment.topRight,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
-                    children: [Text("juice"), Text("beetlejuice")],
+                    children: const [Text("juice"), Text("beetlejuice")],
                   ),
                 ),
               )
@@ -61,30 +60,28 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
           child: Column(
         children: [
-          ElevatedButton(
-            child: Text("call API"),
-            onPressed: () async {
-              await RestServices.getPosts().fold((left) {
-                print("network failed");
-              }, (right) {
-                setState(() {
-                  url = right;
-                  _isLoading = false;
-                });
-              });
-              // .fold((left) {
-              //   print("network failed");
-              // }, (right) {
-              //   setState(() {
+          // ElevatedButton(
+          //   child: const Text("call API"),
+          //   onPressed: () async {
+          //      (right) {
+          //       setState(() {
+          //         url = right;
+          //         _isLoading = false;
+          //       });
+          //     };
+          //   //   .fold((left) {
+          //   //     print("network failed");
+          //   //   }, (right) {
+          //   //     setState(() {
 
-              //     url = right;
-              //     _isLoading = false;
-              //   }););
+          //   //       url = right;
+          //   //       _isLoading = false;
+          //   //     });});
 
-              // print("Called object");
-            },
-          ),
-          _isLoading ? CircularProgressIndicator() : Image.network(url),
+          //   //   print("Called object");
+          //   // },
+          // ),
+          _isLoading ? const CircularProgressIndicator() : Image.network(url),
           Container(
               child: ListView.builder(
             itemCount: products.length,
