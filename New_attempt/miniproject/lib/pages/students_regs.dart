@@ -5,8 +5,6 @@ import 'package:get/get.dart';
 import 'package:miniproject/pages/student_login.dart';
 import 'package:miniproject/pages/qr_scan.dart';
 
-import '../services/auth_services.dart';
-
 class StudentsRegs extends StatefulWidget {
   const StudentsRegs({super.key});
 
@@ -51,7 +49,7 @@ class _StudentsRegsState extends State<StudentsRegs> {
       await FirebaseFirestore.instance
           .collection("Users")
           .doc(user?.email)
-          .set({'name': username, 'email': email, 'admno' : adno});
+          .set({'name': username, 'email': email, 'admno': adno});
       setState(() {
         isloading = false;
       });
@@ -131,6 +129,23 @@ class _StudentsRegsState extends State<StudentsRegs> {
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: TextFormField(
+                      controller: _adminnoController,
+                      style: const TextStyle(color: Colors.black),
+                      decoration: InputDecoration(
+                        hintStyle: const TextStyle(color: Colors.grey),
+                        hintText: "Admission Number",
+                        prefixIcon: const Icon(
+                          Icons.assignment_ind_outlined,
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: TextFormField(
                       controller: _emailController,
                       style: const TextStyle(color: Colors.black),
                       decoration: InputDecoration(
@@ -180,35 +195,20 @@ class _StudentsRegsState extends State<StudentsRegs> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: TextFormField(
-                      controller: _adminnoController,
-                      style: const TextStyle(color: Colors.black),
-                      decoration: InputDecoration(
-                        hintStyle: const TextStyle(color: Colors.grey),
-                        hintText: "Admission Number",
-                        prefixIcon: const Icon(
-                          Icons.assignment_ind_outlined,
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
                     padding: const EdgeInsets.all(30.0),
                     child: ElevatedButton(
                       onPressed: () {
                         _registerUser();
                         // ignore: unnecessary_null_comparison
                         if (_registerUser() == null) {
-                          Navigator.of(context).pushReplacement(MaterialPageRoute(
-                              builder: (context) => const StudentLogin()));
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => const StudentLogin()));
                         }
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(255, 129, 34, 146),
+                        backgroundColor:
+                            const Color.fromARGB(255, 129, 34, 146),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
                       ),
