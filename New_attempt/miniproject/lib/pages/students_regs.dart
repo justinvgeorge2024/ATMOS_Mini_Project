@@ -63,16 +63,17 @@ class _StudentsRegsState extends State<StudentsRegs> {
       //   return;
       // }
       Get.to(const StudentLogin());
-    } on FirebaseAuthException catch (e) {
-      print(e);
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('Email is already used by another account'),
-        duration: Duration(seconds: 5),
-      ));
     }
-    //  on FirebaseAuthException catch (e) {
+    // on FirebaseAuthException catch (e) {
     //   print(e);
+    //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+    //     content: Text('Email is already used by another account'),
+    //     duration: Duration(seconds: 5),
+    //   ));
     // }
+    on FirebaseAuthException catch (e) {
+      print(e);
+    }
   }
 
   @override
