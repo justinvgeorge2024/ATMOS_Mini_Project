@@ -91,9 +91,9 @@ class _TeacherLoginState extends State<TeacherLogin> {
                     padding: const EdgeInsets.all(10.0),
                     child: TextFormField(
                       controller: _usernameController,
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.black),
                       decoration: InputDecoration(
-                        hintStyle: const TextStyle(color: Colors.white),
+                        hintStyle: const TextStyle(color: Colors.grey),
                         hintText: "E-Mail",
                         prefixIcon: const Icon(
                           Icons.mail,
@@ -109,9 +109,9 @@ class _TeacherLoginState extends State<TeacherLogin> {
                     child: TextFormField(
                       obscureText: !_isVisibility,
                       controller: _passwordController,
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.black),
                       decoration: InputDecoration(
-                        hintStyle: const TextStyle(color: Colors.white),
+                        hintStyle: const TextStyle(color: Colors.grey),
                         hintText: "Password",
                         prefixIcon: const Icon(
                           Icons.lock,

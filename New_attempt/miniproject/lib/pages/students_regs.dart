@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,6 +16,7 @@ class StudentsRegs extends StatefulWidget {
 
 class _StudentsRegsState extends State<StudentsRegs> {
   bool _isVisibility = false;
+  final _emailController = TextEditingController();
   final _usernameController = TextEditingController();
 
   final _passwordController = TextEditingController();
@@ -27,7 +29,7 @@ class _StudentsRegsState extends State<StudentsRegs> {
 
   @override
   void dispose() {
-    _usernameController.dispose();
+    _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
@@ -37,13 +39,23 @@ class _StudentsRegsState extends State<StudentsRegs> {
       setState(() {
         isloading = true;
       });
-      String email = _usernameController.text.trim();
+      String username = _usernameController.text.trim();
+      String email = _emailController.text.trim();
       String password = _passwordController.text.trim();
-      Future<String> res =
-          AuthServices.singup(email: email, password: password);
+
+      FirebaseAuth auth = FirebaseAuth.instance;
+      User? user = FirebaseAuth.instance.currentUser;
+      await auth
+          .createUserWithEmailAndPassword(email: email, password: password)
+          .then((value) => FirebaseFirestore.instance
+              .collection("Users")
+              .doc(user?.email)
+              .set({'name': username, 'email': email}));
       setState(() {
         isloading = false;
       });
+      Future<String> res =
+          AuthServices.singup(email: email, password: password);
 
       if (res != "success") {
         print(res);
@@ -93,9 +105,26 @@ class _StudentsRegsState extends State<StudentsRegs> {
                   padding: const EdgeInsets.all(20.0),
                   child: TextFormField(
                     controller: _usernameController,
-                    style: const TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.black),
                     decoration: InputDecoration(
-                      hintStyle: const TextStyle(color: Colors.white),
+                      hintStyle: const TextStyle(color: Colors.grey),
+                      hintText: "Username",
+                      prefixIcon: const Icon(
+                        Icons.person,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: TextFormField(
+                    controller: _emailController,
+                    style: const TextStyle(color: Colors.black),
+                    decoration: InputDecoration(
+                      hintStyle: const TextStyle(color: Colors.grey),
                       hintText: "E-Mail",
                       prefixIcon: const Icon(
                         Icons.mail,
@@ -111,9 +140,9 @@ class _StudentsRegsState extends State<StudentsRegs> {
                   child: TextFormField(
                     obscureText: !_isVisibility,
                     controller: _passwordController,
-                    style: const TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.black),
                     decoration: InputDecoration(
-                      hintStyle: const TextStyle(color: Colors.white),
+                      hintStyle: const TextStyle(color: Colors.grey),
                       hintText: "Password",
                       prefixIcon: const Icon(
                         Icons.lock,
@@ -127,11 +156,11 @@ class _StudentsRegsState extends State<StudentsRegs> {
                         icon: _isVisibility
                             ? const Icon(
                                 Icons.visibility,
-                                color: Colors.white,
+                                color: Colors.black,
                               )
                             : const Icon(
                                 Icons.visibility_off,
-                                color: Colors.white,
+                                color: Colors.black,
                               ),
                       ),
                       border: OutlineInputBorder(

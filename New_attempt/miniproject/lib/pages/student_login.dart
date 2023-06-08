@@ -90,9 +90,9 @@ class _StudentLoginState extends State<StudentLogin> {
                     padding: const EdgeInsets.all(10.0),
                     child: TextFormField(
                       controller: _usernameController,
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.black),
                       decoration: InputDecoration(
-                        hintStyle: const TextStyle(color: Colors.white),
+                        hintStyle: const TextStyle(color: Colors.grey),
                         hintText: "E-Mail",
                         prefixIcon: const Icon(
                           Icons.mail,
@@ -108,9 +108,9 @@ class _StudentLoginState extends State<StudentLogin> {
                     child: TextFormField(
                       obscureText: !_isVisibility,
                       controller: _passwordController,
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.black),
                       decoration: InputDecoration(
-                        hintStyle: const TextStyle(color: Colors.white),
+                        hintStyle: const TextStyle(color: Colors.grey),
                         hintText: "Password",
                         prefixIcon: const Icon(
                           Icons.lock,
@@ -165,7 +165,9 @@ class _StudentLoginState extends State<StudentLogin> {
                       ),
                       child: isloading
                           ? const Center(
-                              child: CircularProgressIndicator(),
+                              child: CircularProgressIndicator(
+                                color: Colors.black,
+                              ),
                             )
                           : const Center(
                               child: Text("Login"),
@@ -187,7 +189,8 @@ class _StudentLoginState extends State<StudentLogin> {
                       ),
                       child: isloading
                           ? const Center(
-                              child: CircularProgressIndicator(),
+                              child: CircularProgressIndicator(
+                                  color: Colors.black),
                             )
                           : const Center(
                               child: Text("Register"),
