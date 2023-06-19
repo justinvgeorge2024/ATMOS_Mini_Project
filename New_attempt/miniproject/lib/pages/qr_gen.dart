@@ -23,7 +23,7 @@ final cityRef = FirebaseFirestore.instance
       toFirestore: (city, _) => city.toJson(),
     );
  City? city;
- String Qd  = "${city?.genre}";
+ String Qd  = "${city?.admno}";
 class _QrGeneratorState extends State<QrGenerator> {
   @override
   Widget build(BuildContext context) {
@@ -68,31 +68,31 @@ class _QrGeneratorState extends State<QrGenerator> {
 @immutable
 class City {
    City({
-    required this.genre,
-    required this.likes,
-    required this.poster,
+    required this.admno,
+    required this.email1,
+    required this.name,
   });
 
   City.fromJson(Map<String, Object?> json)
       : this(
-          genre: json['genre']! as String,
-          likes: json['likes']! as int,
-          poster: json['poster']! as String,
+          admno: json['admno']! as String,
+          email1: json['email']! as int,
+          name: json['name']! as String,
         );
 
-  final String poster;
-  final int likes;
-   String genre="";
+  final String name;
+  final int email1;
+  final String admno;
 
   Map<String, Object?> toJson() {
     return {
-      'genre': genre,
-      'likes': likes,
-      'poster': poster,
+      'admno': admno,
+      'email': email1,
+      'name': name,
     };
   }
 
   String rfgr() {
-    return genre;
+    return admno;
   }
 }
