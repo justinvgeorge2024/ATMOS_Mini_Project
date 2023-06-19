@@ -61,7 +61,7 @@ class _StudentsHomeState extends State<StudentsHome> {
                 ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => const QrGenerator()));
+                        builder: (context) =>  QrGenerator()));
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromARGB(255, 129, 34, 146),

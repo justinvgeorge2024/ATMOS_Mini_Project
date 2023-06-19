@@ -29,7 +29,7 @@ class _StudentsRegsState extends State<StudentsRegs> {
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
-    super.dispose();
+    super.dispose(); 
   }
 
   Future _registerUser() async {
@@ -45,7 +45,7 @@ class _StudentsRegsState extends State<StudentsRegs> {
       await auth.createUserWithEmailAndPassword(
           email: email, password: password);
       // await AuthServices.singup(email: email, password: password);
-      User? user = FirebaseAuth.instance.currentUser;
+      User? user = auth.currentUser;
       await FirebaseFirestore.instance
           .collection("Users")
           .doc(user?.email)

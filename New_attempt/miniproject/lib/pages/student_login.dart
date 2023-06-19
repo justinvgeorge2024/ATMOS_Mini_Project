@@ -7,6 +7,10 @@ import 'package:miniproject/services/auth_services.dart';
 import 'package:get/get.dart';
 import 'package:miniproject/pages/qr_scan.dart';
 
+
+String email='';
+
+
 class StudentLogin extends StatefulWidget {
   const StudentLogin({super.key});
 
@@ -39,7 +43,7 @@ class _StudentLoginState extends State<StudentLogin> {
         isloading = true;
       });
 
-      String email = _usernameController.text.trim();
+       email = _usernameController.text.trim();
       String password = _passwordController.text.trim();
       Future<String> res = AuthServices.login(email: email, password: password);
       setState(() {
