@@ -4,7 +4,6 @@ import 'package:miniproject/pages/select_operator.dart';
 import 'package:miniproject/pages/students_home.dart';
 import 'package:miniproject/pages/students_regs.dart';
 import 'package:miniproject/services/auth_services.dart';
-import 'package:get/get.dart';
 import 'package:miniproject/pages/qr_scan.dart';
 
 class StudentLogin extends StatefulWidget {
@@ -41,7 +40,7 @@ class _StudentLoginState extends State<StudentLogin> {
 
       String email = _usernameController.text.trim();
       String password = _passwordController.text.trim();
-      Future<String> res = AuthServices.login(email: email, password: password);
+      String res = await AuthServices.login(email: email, password: password);
       setState(() {
         isloading = false;
       });
@@ -50,7 +49,9 @@ class _StudentLoginState extends State<StudentLogin> {
         print(res);
         return;
       }
-      Get.to(const StudentsHome());
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => const StudentsHome()),
+          (Route<dynamic> route) => false);
     } on FirebaseAuthException catch (e) {
       print(e);
     }
@@ -142,20 +143,6 @@ class _StudentLoginState extends State<StudentLogin> {
                     child: ElevatedButton(
                       onPressed: () {
                         _loginUser();
-                        Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                            builder: (context) => StreamBuilder<User?>(
-                              stream: FirebaseAuth.instance.authStateChanges(),
-                              builder: (context, snapshot) {
-                                if (snapshot.hasData) {
-                                  return const StudentsHome();
-                                } else {
-                                  return const StudentLogin();
-                                }
-                              },
-                            ),
-                          ),
-                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor:

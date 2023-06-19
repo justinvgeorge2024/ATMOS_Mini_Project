@@ -10,7 +10,7 @@ class AuthServices {
       // ignore: unused_local_variable
       UserCredential cred = await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
-      res = "Sucsess";
+      res = "sucsess";
     } catch (e) {
       res = e.toString();
     }
@@ -24,7 +24,7 @@ class AuthServices {
       // ignore: unused_local_variable
       UserCredential cred = await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
-      res = "Sucsess";
+      res = "success";
     } catch (e) {
       res = e.toString();
     }

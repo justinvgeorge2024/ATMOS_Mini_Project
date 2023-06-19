@@ -8,6 +8,7 @@ import 'package:miniproject/pages/students_home.dart';
 import 'package:miniproject/services/auth_services.dart';
 import 'package:miniproject/pages/qr_scan.dart';
 
+String email = "";
 class TeacherLogin extends StatefulWidget {
   const TeacherLogin({super.key});
 
@@ -34,15 +35,15 @@ class _TeacherLoginState extends State<TeacherLogin> {
     super.dispose();
   }
 
-  Future _loginUser() async {
+   Future _loginUser() async {
     try {
       setState(() {
         isloading = true;
       });
 
-      String email = _usernameController.text.trim();
+      email = _usernameController.text.trim();
       String password = _passwordController.text.trim();
-      Future<String> res = AuthServices.login(email: email, password: password);
+      String res = await AuthServices.login(email: email, password: password);
       setState(() {
         isloading = false;
       });
@@ -51,7 +52,9 @@ class _TeacherLoginState extends State<TeacherLogin> {
         print(res);
         return;
       }
-      Get.to(const StudentsHome());
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => const TeachersHome()),
+          (Route<dynamic> route) => false);
     } on FirebaseAuthException catch (e) {
       print(e);
     }
@@ -143,20 +146,20 @@ class _TeacherLoginState extends State<TeacherLogin> {
                     child: ElevatedButton(
                       onPressed: () {
                         _loginUser();
-                        Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                            builder: (context) => StreamBuilder<User?>(
-                              stream: FirebaseAuth.instance.authStateChanges(),
-                              builder: (context, snapshot) {
-                                if (snapshot.hasData) {
-                                  return const TeachersHome();
-                                } else {
-                                  return const TeacherLogin();
-                                }
-                              },
-                            ),
-                          ),
-                        );
+                        // Navigator.of(context).pushReplacement(
+                        //   MaterialPageRoute(
+                        //     builder: (context) => StreamBuilder<User?>(
+                        //       stream: FirebaseAuth.instance.authStateChanges(),
+                        //       builder: (context, snapshot) {
+                        //         if (snapshot.hasData) {
+                        //           return const TeachersHome();
+                        //         } else {
+                        //           return const TeacherLogin();
+                        //         }
+                        //       },
+                        //     ),
+                        //   ),
+                        // );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor:
