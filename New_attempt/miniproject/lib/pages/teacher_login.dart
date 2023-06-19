@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:miniproject/pages/select_operator.dart';
 import 'package:miniproject/pages/teachers_home.dart';
 import 'package:miniproject/pages/teachers_regs.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:miniproject/pages/students_home.dart';
 import 'package:miniproject/services/auth_services.dart';
 import 'package:miniproject/pages/qr_scan.dart';
 
 String email = "";
+
 class TeacherLogin extends StatefulWidget {
   const TeacherLogin({super.key});
 
@@ -35,7 +34,7 @@ class _TeacherLoginState extends State<TeacherLogin> {
     super.dispose();
   }
 
-   Future _loginUser() async {
+  Future _loginUser() async {
     try {
       setState(() {
         isloading = true;
