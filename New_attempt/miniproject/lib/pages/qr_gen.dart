@@ -119,7 +119,4 @@ class City {
     };
   }
 
-  String rfgr() {
-    return admno;
-  }
 }
