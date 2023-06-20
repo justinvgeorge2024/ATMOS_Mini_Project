@@ -23,7 +23,7 @@ class ItemScreen extends StatefulWidget {
 class _ItemScreenState extends State<ItemScreen> {
   User? user = FirebaseAuth.instance.currentUser;
   Stream<QuerySnapshot> streamQuery =
-      db.collection("Users").doc(User.email).snapshots();
+      db.collection("Users").snapshots();
   @override
   void initState() {
     super.initState();
